@@ -113,10 +113,6 @@ _data = {
 
 [node name="bubble" instance=ExtResource("1_dtwh8")]
 
-[node name="Sprite2D" parent="." index="0"]
-hframes = 6
-vframes = 6
-
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_prx6b")

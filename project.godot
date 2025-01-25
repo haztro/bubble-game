@@ -21,8 +21,8 @@ Game="*res://game.gd"
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=256
+window/size/viewport_width=384
+window/size/viewport_height=216
 window/stretch/mode="viewport"
 
 [global_group]
