@@ -1,19 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://568kua6fped3"]
+[gd_scene load_steps=8 format=3 uid="uid://568kua6fped3"]
 
 [ext_resource type="Script" path="res://units/bubble.gd" id="1_gf67b"]
 [ext_resource type="PackedScene" uid="uid://u37pira5q4ws" path="res://units/states/state_machine.tscn" id="2_qvavh"]
+[ext_resource type="Texture2D" uid="uid://4ptvyxcs5n32" path="res://assets/characters/bubble-small-Sheet.png" id="2_ysjgt"]
 [ext_resource type="Script" path="res://units/states/state_idle.gd" id="3_1d7up"]
 [ext_resource type="Script" path="res://units/states/state_move.gd" id="4_vaanl"]
 [ext_resource type="Script" path="res://units/states/state_search.gd" id="5_kbu8d"]
 [ext_resource type="Script" path="res://units/states/state_attack.gd" id="6_gvci1"]
 
-[node name="bubble" type="Node2D" groups=["bubble", "human"]]
+[node name="bubble" type="Node2D" groups=["bubble"]]
 script = ExtResource("1_gf67b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3, -4)
+texture = ExtResource("2_ysjgt")
+hframes = 4
+vframes = 3
 
-[node name="state_machine" parent="." instance=ExtResource("2_qvavh")]
-script = ExtResource("3_1d7up")
+[node name="state_machine" parent="." node_paths=PackedStringArray("_entity", "_initial_state") instance=ExtResource("2_qvavh")]
+_entity = NodePath("..")
+_initial_state = NodePath("StateSearch")
 
 [node name="StateIdle" type="Node" parent="state_machine"]
 script = ExtResource("3_1d7up")

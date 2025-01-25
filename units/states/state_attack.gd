@@ -14,7 +14,9 @@ func enter_state():
 
 func process(delta):
 	if _entity.target != null:
+		pass
 		if _entity.position.distance_squared_to(_entity.target.position) > Game.ATTACK_RADIUS_SQR:
+			print("TOO FAR")
 			_fsm.set_state(move_state.name)
 	else:
 		_fsm.set_state(search_state.name)
