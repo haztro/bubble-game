@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=8 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="PackedScene" uid="uid://cvrsny1i6lt7k" path="res://units/bubble_small.tscn" id="2_x5ge1"]
@@ -6,26 +6,11 @@
 [ext_resource type="Script" path="res://world/camera_2d.gd" id="3_s5lb3"]
 [ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="4_a1vps"]
 [ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="5_78stl"]
+[ext_resource type="PackedScene" uid="uid://cf7ldb8ee2b6m" path="res://units/bubble_large.tscn" id="7_wda83"]
 
-[node name="world" type="Node2D"]
+[node name="world" type="Node2D" groups=["world"]]
 y_sort_enabled = true
 script = ExtResource("1_k30sl")
-
-[node name="bubble5" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(57, -26)
-is_enemy = true
-
-[node name="bubble6" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(58, -6)
-is_enemy = true
-
-[node name="bubble7" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(57, 14)
-is_enemy = true
-
-[node name="bubble8" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(58, 34)
-is_enemy = true
 
 [node name="bubble" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
 position = Vector2(-48, -28)
@@ -40,10 +25,10 @@ position = Vector2(-48, 14)
 position = Vector2(-48, 36)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-192, 0)
 script = ExtResource("3_s5lb3")
 
 [node name="cloud1" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(0.1, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
@@ -52,6 +37,7 @@ repeat_times = 2
 texture = ExtResource("3_i4clw")
 
 [node name="cloud2" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(0.12, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
@@ -60,9 +46,13 @@ repeat_times = 2
 texture = ExtResource("4_a1vps")
 
 [node name="cloud3" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(0.15, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="cloud3"]
 texture = ExtResource("5_78stl")
+
+[node name="bubble_large" parent="." instance=ExtResource("7_wda83")]
+is_enemy = true

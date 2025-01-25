@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf7ldb8ee2b6m"]
+
+[ext_resource type="PackedScene" uid="uid://568kua6fped3" path="res://units/bubble.tscn" id="1_85i1e"]
+[ext_resource type="Texture2D" uid="uid://buqjjmghoic2u" path="res://assets/characters/bubble-big-Sheet.png" id="2_vfhwh"]
+
+[node name="bubble_large" instance=ExtResource("1_85i1e")]
+bubble_size = "large"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -11)
+texture = ExtResource("2_vfhwh")

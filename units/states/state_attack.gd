@@ -16,6 +16,7 @@ func enter_state():
 func process(delta):
 	if _entity.target != null:
 		if _entity.position.distance_squared_to(_entity.destination) > Game.ATTACK_RADIUS_SQR:
+			await _entity.anim_player.animation_finished
 			_fsm.set_state(move_state.name)
 	else:
 		_fsm.set_state(search_state.name)

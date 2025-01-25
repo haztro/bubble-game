@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var speed: float = 50.0
 @export var damage: float = 0.5
+@export_enum('small', 'medium', 'large') var bubble_size = 'small'
 @export var is_enemy: bool = false
 
 @onready var _sprite = get_node("Sprite2D")
@@ -52,6 +53,21 @@ func _physics_process(delta):
 func die():
 	_fsm.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	anim_player.play("death")
+	var offset1 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
+	var offset2 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
+	
+	match bubble_size:
+		'small':
+			pass
+		'medium':
+
+			get_tree().get_first_node_in_group("world").spawn_bubble(offset1 , "small", is_in_group("enemy"))
+			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "small", is_in_group("enemy"))
+		'large':
+			get_tree().get_first_node_in_group("world").spawn_bubble(offset1, "medium", is_in_group("enemy"))
+			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "medium", is_in_group("enemy"))
+			
+			
 	await anim_player.animation_finished
 	queue_free()
 	

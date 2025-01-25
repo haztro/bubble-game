@@ -20,8 +20,10 @@ func process(delta):
 	elif _entity.is_in_group("human"):
 		enemies = get_tree().get_nodes_in_group("enemy")
 		
-	if not enemies.is_empty():
-		target = enemies.pick_random()
+	var smallest_distance = INF
+	for e in enemies:
+		if _entity.position.distance_squared_to(e.position) < smallest_distance:
+			target = e
 	
 	if target != null:
 		_entity.target = target
