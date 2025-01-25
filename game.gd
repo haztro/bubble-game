@@ -3,8 +3,8 @@ extends Node
 
 const ACCELERATION: float = 0.5
 const FRICTION: float = 0.2
-const ATTACK_DISTANCE: float = 15
-const ATTACK_RADIUS_SQR: float = 20
+const ATTACK_DISTANCE: float = 20
+const ATTACK_RADIUS_SQR: float = 10
 
 var bubbles = {}
 var bubble_id: int = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://568kua6fped3"]
+[gd_scene load_steps=9 format=3 uid="uid://568kua6fped3"]
 
 [ext_resource type="Script" path="res://units/bubble.gd" id="1_gf67b"]
 [ext_resource type="PackedScene" uid="uid://u37pira5q4ws" path="res://units/states/state_machine.tscn" id="2_qvavh"]
@@ -8,15 +8,18 @@
 [ext_resource type="Script" path="res://units/states/state_search.gd" id="5_kbu8d"]
 [ext_resource type="Script" path="res://units/states/state_attack.gd" id="6_gvci1"]
 
-[node name="bubble" type="Node2D" groups=["bubble"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jok2q"]
+radius = 4.0
+
+[node name="bubble" type="CharacterBody2D" groups=["bubble"]]
 script = ExtResource("1_gf67b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(3, -4)
+position = Vector2(0, -4)
 texture = ExtResource("2_ysjgt")
-hframes = 4
-vframes = 3
+hframes = 6
+vframes = 6
 
 [node name="state_machine" parent="." node_paths=PackedStringArray("_entity", "_initial_state") instance=ExtResource("2_qvavh")]
 _entity = NodePath("..")
@@ -40,3 +43,6 @@ search_state = NodePath("../StateSearch")
 move_state = NodePath("../StateMove")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jok2q")

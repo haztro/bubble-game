@@ -19,7 +19,9 @@ func process(delta):
 		enemies = get_tree().get_nodes_in_group("human")
 	elif _entity.is_in_group("human"):
 		enemies = get_tree().get_nodes_in_group("enemy")
-	target = enemies.pick_random()
+		
+	if not enemies.is_empty():
+		target = enemies.pick_random()
 	
 	if target != null:
 		_entity.target = target

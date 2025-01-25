@@ -10,7 +10,7 @@ func _ready():
 
 func enter_state():
 	_entity.anim_player.play("attack")
-	_entity._sprite.set_flip_h(1 if _entity.position < _entity.destination else 0)
+	_entity._sprite.set_flip_h(1 if _entity.position > _entity.target.position else 0)
 
 
 func process(delta):
