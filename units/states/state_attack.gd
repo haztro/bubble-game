@@ -9,14 +9,13 @@ func _ready():
 	pass
 
 func enter_state():
-	pass
+	_entity.anim_player.play("attack")
+	_entity._sprite.set_flip_h(1 if _entity.position < _entity.destination else 0)
 
 
 func process(delta):
 	if _entity.target != null:
-		pass
-		if _entity.position.distance_squared_to(_entity.target.position) > Game.ATTACK_RADIUS_SQR:
-			print("TOO FAR")
+		if _entity.position.distance_squared_to(_entity.destination) > Game.ATTACK_RADIUS_SQR:
 			_fsm.set_state(move_state.name)
 	else:
 		_fsm.set_state(search_state.name)

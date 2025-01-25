@@ -7,11 +7,11 @@
 script = ExtResource("1_k30sl")
 
 [node name="bubble5" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(230, 118)
+position = Vector2(214, 57)
 is_enemy = true
 
 [node name="bubble" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(99, 118)
+position = Vector2(211, 154)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(287, 160)

@@ -10,8 +10,7 @@ func enter_state():
 	
 func process(delta):
 	if _entity.target != null:
-		if _entity.position.distance_squared_to(_entity.target.position) <= Game.ATTACK_RADIUS_SQR:
-			print("START ATTACKING")
+		if _entity.position.distance_squared_to(_entity.destination) <= Game.ATTACK_RADIUS_SQR:
 			_fsm.set_state(attack_state.name)
 	else:
 		_fsm.set_state(search_state.name)

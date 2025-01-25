@@ -11,6 +11,7 @@ extends Node2D
 
 var velocity: Vector2 = Vector2.ZERO
 var target = null
+var destination: Vector2 = Vector2.ZERO
 var direction: Vector2 = Vector2.ZERO
 var bubble_id: int = 0
 
@@ -31,9 +32,10 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta):
 	if target != null:
-		print(_fsm._state_name)
 		if _fsm._state_name == "StateMove":
-			direction = position.direction_to(target.position)
+			destination = target.position
+			destination.x += Game.ATTACK_DISTANCE * (-1 if position.x < target.position.x else 1)
+			direction = position.direction_to(destination)
 			velocity = velocity.lerp(direction * speed, Game.ACCELERATION)
 			if direction.x < 0:
 				_sprite.set_flip_h(1)
