@@ -12,6 +12,8 @@ var bubbles = {}
 var bubble_id: int = 0
 
 
+var bubble_bux = 0
+
 
 func add_bubble(bubble: Bubble):
 	bubble.bubble_id = bubble_id

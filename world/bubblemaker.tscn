@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvgiipc3atioa"]
+
+[ext_resource type="PackedScene" uid="uid://6338teuh86v8" path="res://world/building.tscn" id="1_etf0x"]
+[ext_resource type="Script" path="res://world/bubblemaker.gd" id="2_ejchm"]
+[ext_resource type="Texture2D" uid="uid://drahugk5bkoox" path="res://assets/environment/building-resource-Sheet.png" id="3_upqv2"]
+
+[sub_resource type="Animation" id="Animation_vcnx7"]
+resource_name = "money"
+step = 0.14
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_bubble"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hs1u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_78k1w"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hb14h"]
+_data = {
+"RESET": SubResource("Animation_hs1u8"),
+"idle": SubResource("Animation_78k1w"),
+"money": SubResource("Animation_vcnx7")
+}
+
+[node name="bubblemaker" instance=ExtResource("1_etf0x")]
+texture_filter = 1
+script = ExtResource("2_ejchm")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_upqv2")
+hframes = 4
+vframes = 3
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_hb14h")
+}
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=10 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="4_a1vps"]
 [ext_resource type="Texture2D" uid="uid://ds0xm4ddld286" path="res://assets/environment/sky.png" id="4_s2aod"]
 [ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="5_78stl"]
+[ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="7_q1t7q"]
+[ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
+[ext_resource type="PackedScene" uid="uid://bvgiipc3atioa" path="res://world/bubblemaker.tscn" id="9_a5g8c"]
 
 [node name="world" type="Node2D" groups=["world"]]
 y_sort_enabled = true
@@ -40,6 +43,7 @@ offset = Vector2(256, 0)
 [node name="Mountain3" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
 [node name="Mountain3_1" type="Sprite2D" parent="ParallaxBG/Mountain3"]
 texture_filter = 1
@@ -58,6 +62,7 @@ offset = Vector2(256, 0)
 [node name="Mountain2" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
 [node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/Mountain2"]
 texture_filter = 1
@@ -73,10 +78,67 @@ texture_filter = 1
 texture = ExtResource("4_a1vps")
 offset = Vector2(256, 0)
 
-[node name="Mountain1" type="Parallax2D" parent="ParallaxBG"]
+[node name="Mountain4" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.4, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
-[node name="Mountain1_1" type="Sprite2D" parent="ParallaxBG/Mountain1"]
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/Mountain4"]
 texture_filter = 1
 texture = ExtResource("5_78stl")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/Mountain4"]
+texture_filter = 1
+texture = ExtResource("5_78stl")
+
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/Mountain4"]
+texture_filter = 1
+texture = ExtResource("5_78stl")
+offset = Vector2(256, 0)
+
+[node name="foreground" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(0, 20)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/foreground"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/foreground"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/foreground"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+offset = Vector2(256, 0)
+
+[node name="foreground2" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.6, 0)
+scroll_offset = Vector2(0, 40)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/foreground2"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/foreground2"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/foreground2"]
+texture_filter = 1
+texture = ExtResource("7_q1t7q")
+offset = Vector2(256, 0)
+
+[node name="barracks" parent="." instance=ExtResource("8_cm61e")]
+position = Vector2(-143, 162)
+
+[node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
+position = Vector2(-160, 89)
