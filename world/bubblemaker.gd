@@ -9,7 +9,7 @@ var money_bubble_scene = preload("res://world/money_bubble.tscn")
 func _ready() -> void:
 	super._ready()
 	anim_player.seek(0.4)
-	tier = 2
+	tier = 1
 	
 	if tier > 0:
 		$Timer.start()
@@ -27,9 +27,10 @@ func _on_timer_timeout() -> void:
 	
 func spawn_bubble():
 	var mb = money_bubble_scene.instantiate()
-	mb.position = position
-	position.y -= 15
+	mb.position.y -= 10
 	mb.worth = worth_function()
+	mb.set_worth_card(mb.worth)
+	add_child(mb)
 	
 	
 	

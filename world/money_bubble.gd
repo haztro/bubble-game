@@ -2,22 +2,31 @@ extends Node2D
 
 
 var worth = 1
-
+var flight_time = 0.8
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$Timer.wait_time = flight_time - 0.2
+	$Timer2.wait_time = flight_time + 0.1
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", Vector2(position.x, position.y - 150), flight_time*5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
+	$Timer.start()
+	$Timer2.start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func set_worth_card(val):
+	$number.frame = worth - 1
+
+
+func _on_pop_animation_finished() -> void:
+	queue_free()
 
 
 func _on_timer_timeout() -> void:
-	$AnimatedSprite2D.play()
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
 	Game.bubble_bux += worth
-	queue_free()
+	$pop.play()
+
+
+func _on_timer_2_timeout() -> void:
+	$number.visible = true
+	pass
