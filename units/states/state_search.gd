@@ -10,6 +10,7 @@ func _ready():
 
 func enter_state():
 	_entity.anim_player.play("idle")
+	#pass
 
 
 func process(delta):

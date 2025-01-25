@@ -1,58 +1,82 @@
-[gd_scene load_steps=8 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=7 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
-[ext_resource type="PackedScene" uid="uid://cvrsny1i6lt7k" path="res://units/bubble_small.tscn" id="2_x5ge1"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
 [ext_resource type="Script" path="res://world/camera_2d.gd" id="3_s5lb3"]
 [ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="4_a1vps"]
+[ext_resource type="Texture2D" uid="uid://ds0xm4ddld286" path="res://assets/environment/sky.png" id="4_s2aod"]
 [ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="5_78stl"]
-[ext_resource type="PackedScene" uid="uid://cf7ldb8ee2b6m" path="res://units/bubble_large.tscn" id="7_wda83"]
 
 [node name="world" type="Node2D" groups=["world"]]
 y_sort_enabled = true
 script = ExtResource("1_k30sl")
 
-[node name="bubble" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-48, -28)
-
-[node name="bubble2" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-48, -6)
-
-[node name="bubble3" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-48, 14)
-
-[node name="bubble4" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-48, 36)
-
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 108)
 script = ExtResource("3_s5lb3")
 
-[node name="cloud1" type="Parallax2D" parent="."]
-visible = false
-scroll_scale = Vector2(0.1, 1)
-repeat_size = Vector2(256, 0)
-repeat_times = 2
+[node name="ParallaxBG" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(128, 128)
 
-[node name="Sprite2D" type="Sprite2D" parent="cloud1"]
+[node name="Sky" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(768, 0)
+
+[node name="Sky_1" type="Sprite2D" parent="ParallaxBG/Sky"]
+texture_filter = 1
+texture = ExtResource("4_s2aod")
+offset = Vector2(-256, 0)
+
+[node name="Sky_2" type="Sprite2D" parent="ParallaxBG/Sky"]
+texture_filter = 1
+texture = ExtResource("4_s2aod")
+
+[node name="Sky_3" type="Sprite2D" parent="ParallaxBG/Sky"]
+texture_filter = 1
+texture = ExtResource("4_s2aod")
+offset = Vector2(256, 0)
+
+[node name="Mountain3" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(768, 0)
+
+[node name="Mountain3_1" type="Sprite2D" parent="ParallaxBG/Mountain3"]
+texture_filter = 1
+texture = ExtResource("3_i4clw")
+offset = Vector2(-256, 0)
+
+[node name="Mountain3_2" type="Sprite2D" parent="ParallaxBG/Mountain3"]
+texture_filter = 1
 texture = ExtResource("3_i4clw")
 
-[node name="cloud2" type="Parallax2D" parent="."]
-visible = false
-scroll_scale = Vector2(0.12, 1)
-repeat_size = Vector2(256, 0)
-repeat_times = 2
+[node name="Mountain3_3" type="Sprite2D" parent="ParallaxBG/Mountain3"]
+texture_filter = 1
+texture = ExtResource("3_i4clw")
+offset = Vector2(256, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="cloud2"]
+[node name="Mountain2" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(768, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/Mountain2"]
+texture_filter = 1
+texture = ExtResource("4_a1vps")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/Mountain2"]
+texture_filter = 1
 texture = ExtResource("4_a1vps")
 
-[node name="cloud3" type="Parallax2D" parent="."]
-visible = false
-scroll_scale = Vector2(0.15, 1)
-repeat_size = Vector2(256, 0)
-repeat_times = 2
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/Mountain2"]
+texture_filter = 1
+texture = ExtResource("4_a1vps")
+offset = Vector2(256, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="cloud3"]
+[node name="Mountain1" type="Parallax2D" parent="ParallaxBG"]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(768, 0)
+
+[node name="Mountain1_1" type="Sprite2D" parent="ParallaxBG/Mountain1"]
+texture_filter = 1
 texture = ExtResource("5_78stl")
-
-[node name="bubble_large" parent="." instance=ExtResource("7_wda83")]
-is_enemy = true

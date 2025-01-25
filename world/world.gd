@@ -13,7 +13,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("left click"):
+		spawn_bubble(get_global_mouse_position(), 'large', false)
+	if Input.is_action_just_pressed("right click"):
+		spawn_bubble(get_global_mouse_position(), 'large', true)
 
 
 func spawn_bubble(bubble_pos, bubble_size, is_enemy):
