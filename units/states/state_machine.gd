@@ -22,7 +22,7 @@ func _ready():
 	if _initial_state:
 		_state = _initial_state
 		_state_name = _initial_state.name
-		call_deferred("set_state", _state_name)
+		#call_deferred("set_state", _state_name)
 
 
 func _process(delta):
@@ -31,6 +31,7 @@ func _process(delta):
 	
 	
 func set_state(new_state: String):	
+	print("SETTING STATE to ", new_state)
 	if not _states.has(new_state):	# Invalid state
 		return FAILED
 		

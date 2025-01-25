@@ -28,6 +28,8 @@ func _ready() -> void:
 		modulate = Color.RED
 	else:
 		add_to_group("human")
+		_sprite.frame = 24
+		_fsm.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 
@@ -35,6 +37,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+	
+
+func run_to_next():
+	_fsm.set_state("StateRun")	
+
+	
+func spawn_self():
+	anim_player.play("spawn")
+	await anim_player.animation_finished
+	_fsm.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	_fsm.set_state("StateIdle")
 	
 	
 func _physics_process(delta):

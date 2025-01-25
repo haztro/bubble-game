@@ -10,7 +10,7 @@ var _timer: Timer = Timer.new()
 func _ready():
 	_timer.timeout.connect(_on_timer_timeout)
 	_timer.wait_time = 0.2
-	_timer.autostart = true
+	_timer.autostart = false
 	_timer.one_shot = false
 	add_child(_timer)
 	
@@ -20,6 +20,7 @@ func _on_timer_timeout():
 	
 
 func enter_state():
+	_timer.start()
 	_entity.anim_player.play("walk")
 	
 	

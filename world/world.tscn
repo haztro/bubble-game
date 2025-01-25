@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=12 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="7_q1t7q"]
 [ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
 [ext_resource type="PackedScene" uid="uid://bvgiipc3atioa" path="res://world/bubblemaker.tscn" id="9_a5g8c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vbjp"]
+bg_color = Color(0.0431373, 0, 0.160784, 1)
 
 [node name="world" type="Node2D" groups=["world"]]
 y_sort_enabled = true
@@ -142,3 +148,40 @@ position = Vector2(-143, 162)
 
 [node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
 position = Vector2(-160, 89)
+
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/MarginContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_w5eqq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8vbjp")
+value = 100.0
+show_percentage = false
+
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
