@@ -14,6 +14,16 @@ config/name="bubble-game"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://game.gd"
+
+[global_group]
+
+bubble=""
+enemy=""
+human=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
