@@ -119,7 +119,7 @@ func die():
 	anim_player.play("death")
 	var offset1 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
 	var offset2 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
-	
+
 	match bubble_size:
 		'small':
 			pass

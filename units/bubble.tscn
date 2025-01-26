@@ -188,4 +188,6 @@ avoidance_enabled = true
 radius = 8.0
 neighbor_distance = 100.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

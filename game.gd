@@ -8,7 +8,7 @@ const ATTACK_DISTANCE_X: float = 20
 const ATTACK_DISTANCE_Y: float = 30
 const ATTACK_RADIUS_SQR: float = 20
 
-const CELEBRATION_TIME: float = 0.5
+const CELEBRATION_TIME: float = 0.1
 const CAMERA_BUILDING_DELAY: float = 0.3
 const BUILDING_FLY_TIME: float = 4.0
 const CAM_TO_BASE_TIME: float = 2.0
