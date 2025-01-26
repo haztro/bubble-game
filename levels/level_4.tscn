@@ -9,7 +9,3 @@ position = Vector2(2, 27)
 [node name="bubble_large" parent="." index="0" instance=ExtResource("4_w5c7a")]
 position = Vector2(12, -20)
 is_enemy = true
-
-[node name="bubble_large2" parent="." index="1" instance=ExtResource("4_w5c7a")]
-position = Vector2(24, 25)
-is_enemy = true

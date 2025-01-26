@@ -7,30 +7,18 @@
 [node name="Level1" instance=ExtResource("1_j3ie0")]
 position = Vector2(2, 27)
 
-[node name="bubble_large" parent="." index="0" instance=ExtResource("2_ejye8")]
-position = Vector2(35, 2)
-is_enemy = true
-
-[node name="bubble_large2" parent="." index="1" instance=ExtResource("2_ejye8")]
+[node name="bubble_large2" parent="." index="0" instance=ExtResource("2_ejye8")]
 position = Vector2(1, -23)
 is_enemy = true
 
-[node name="bubble_large4" parent="." index="2" instance=ExtResource("2_ejye8")]
-position = Vector2(76, -20)
+[node name="bubble_large5" parent="." index="1" instance=ExtResource("2_ejye8")]
+position = Vector2(45, -33)
 is_enemy = true
 
-[node name="bubble_large5" parent="." index="3" instance=ExtResource("2_ejye8")]
-position = Vector2(46, -37)
-is_enemy = true
-
-[node name="bubble_medium4" parent="." index="4" instance=ExtResource("3_1vja2")]
+[node name="bubble_medium4" parent="." index="2" instance=ExtResource("3_1vja2")]
 position = Vector2(13, -54)
 is_enemy = true
 
-[node name="bubble_medium5" parent="." index="5" instance=ExtResource("3_1vja2")]
-position = Vector2(69, -64)
-is_enemy = true
-
-[node name="bubble_medium6" parent="." index="6" instance=ExtResource("3_1vja2")]
-position = Vector2(101, -44)
+[node name="bubble_medium5" parent="." index="3" instance=ExtResource("3_1vja2")]
+position = Vector2(-28, -55)
 is_enemy = true

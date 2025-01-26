@@ -85,9 +85,11 @@ func check_win():
 	
 	if num_human <= 0:
 		$Timer.stop()
-		Game.bubble_bux	= 30
+		Game.bubble_bux	= 50
 		Game.UPGRADE_SPEED_COST = 20
 		Game.UPGRADE_WORTH_COST = 20
+		Game.level = 1
+		Game.mode = "base"
 		await get_tree().create_timer(3)
 		get_tree().reload_current_scene()
 	elif num_enemy <= 0:

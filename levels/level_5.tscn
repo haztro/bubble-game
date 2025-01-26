@@ -11,9 +11,5 @@ position = Vector2(35, 2)
 is_enemy = true
 
 [node name="bubble_large2" parent="." index="1" instance=ExtResource("4_08vsu")]
-position = Vector2(74, -18)
-is_enemy = true
-
-[node name="bubble_large3" parent="." index="2" instance=ExtResource("4_08vsu")]
-position = Vector2(38, -39)
+position = Vector2(-5, -26)
 is_enemy = true
