@@ -13,10 +13,20 @@ const CAMERA_BUILDING_DELAY: float = 0.3
 const BUILDING_FLY_TIME: float = 4.0
 const CAM_TO_BASE_TIME: float = 2.0
 
+const BARRACKS_TIER1_COST: float = 50
+const BARRACKS_TIER2_COST: float = 100
+
+const SMALL_COST: float = 10
+const MED_COST: float = 30
+const LARGE_COST: float = 100
+
+
+
+
 var bubbles = {}
 var bubble_id: int = 0
 
-var bubble_bux = 0
+var bubble_bux = 1000
 
 
 var mode: String = "base"

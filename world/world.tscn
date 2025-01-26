@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=39 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://dsydfkotpucq3" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium4.png" id="27_7lu5g"]
 [ext_resource type="Texture2D" uid="uid://dy8brsd041f73" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium3.png" id="28_kd0rt"]
 [ext_resource type="Texture2D" uid="uid://bs8iyvmph2hry" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium5.png" id="29_0nj4f"]
+[ext_resource type="Texture2D" uid="uid://cta1o24brb18w" path="res://assets/ui/resource/resource-tab.png" id="30_x7mik"]
+[ext_resource type="FontFile" uid="uid://cpn6mik1fef17" path="res://assets/fonts/3-by-5-pixel-font.ttf" id="31_behwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
 bg_color = Color(1, 1, 1, 1)
@@ -226,10 +228,10 @@ grow_vertical = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 4)
@@ -262,9 +264,11 @@ texture_hover = ExtResource("13_ut74e")
 texture_disabled = ExtResource("14_jx7sy")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="buy_med" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_crxp4")
 texture_pressed = ExtResource("17_jq2cl")
@@ -272,9 +276,11 @@ texture_hover = ExtResource("18_nlqf1")
 texture_disabled = ExtResource("19_vfqw2")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="buy_large" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_bxmv3")
 texture_pressed = ExtResource("22_t26lk")
@@ -285,11 +291,31 @@ texture_disabled = ExtResource("24_wypge")
 layout_mode = 2
 
 [node name="buy_upgrade" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_ayi2o")
 texture_pressed = ExtResource("27_7lu5g")
 texture_hover = ExtResource("28_kd0rt")
 texture_disabled = ExtResource("29_0nj4f")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("30_x7mik")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/TextureButton"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 57.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.0431373, 0, 0.160784, 1)
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [node name="Level1" parent="." instance=ExtResource("10_u8s8h")]
 position = Vector2(279, 125)
@@ -298,4 +324,8 @@ position = Vector2(279, 125)
 wait_time = 0.2
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/buy_small" to="." method="_on_buy_small_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/buy_med" to="." method="_on_buy_med_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large" to="." method="_on_buy_large_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade" to="." method="_on_buy_upgrade_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
