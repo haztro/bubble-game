@@ -24,6 +24,7 @@ func _on_pop_animation_finished() -> void:
 
 func _on_timer_timeout() -> void:
 	Game.bubble_bux += worth
+	get_tree().get_first_node_in_group("world").update_buttons()
 	$pop.play()
 
 

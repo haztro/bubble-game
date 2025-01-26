@@ -1,8 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=39 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
-[ext_resource type="Script" path="res://world/camera_2d.gd" id="3_s5lb3"]
 [ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="4_a1vps"]
 [ext_resource type="Texture2D" uid="uid://ds0xm4ddld286" path="res://assets/environment/sky.png" id="4_s2aod"]
 [ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="5_78stl"]
@@ -30,6 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://dsydfkotpucq3" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium4.png" id="27_7lu5g"]
 [ext_resource type="Texture2D" uid="uid://dy8brsd041f73" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium3.png" id="28_kd0rt"]
 [ext_resource type="Texture2D" uid="uid://bs8iyvmph2hry" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium5.png" id="29_0nj4f"]
+[ext_resource type="Texture2D" uid="uid://cta1o24brb18w" path="res://assets/ui/resource/resource-tab.png" id="30_x7mik"]
+[ext_resource type="FontFile" uid="uid://cpn6mik1fef17" path="res://assets/fonts/3-by-5-pixel-font.ttf" id="31_behwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryjhi"]
+size = Vector2(401, 20)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
 bg_color = Color(1, 1, 1, 1)
@@ -71,7 +75,20 @@ script = ExtResource("1_k30sl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 108)
-script = ExtResource("3_s5lb3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(3, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+position = Vector2(190.5, 0)
+shape = SubResource("RectangleShape2D_ryjhi")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(1, -54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
+position = Vector2(190.5, 0)
+shape = SubResource("RectangleShape2D_ryjhi")
 
 [node name="ParallaxBG" type="Node2D" parent="."]
 z_index = -10
@@ -194,14 +211,16 @@ offset = Vector2(256, 0)
 
 [node name="barracks" parent="." instance=ExtResource("8_cm61e")]
 z_index = 2
-position = Vector2(-98, 163)
+position = Vector2(-68, 163)
+init_position = Vector2(-68, 163)
 
 [node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
 z_index = 2
-position = Vector2(-115, 90)
+position = Vector2(-85, 90)
+init_position = Vector2(-85, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -224,10 +243,10 @@ grow_vertical = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 4)
@@ -240,12 +259,15 @@ show_percentage = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 35
+theme_override_constants/margin_top = 115
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -260,9 +282,11 @@ texture_hover = ExtResource("13_ut74e")
 texture_disabled = ExtResource("14_jx7sy")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="buy_med" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_crxp4")
 texture_pressed = ExtResource("17_jq2cl")
@@ -270,9 +294,11 @@ texture_hover = ExtResource("18_nlqf1")
 texture_disabled = ExtResource("19_vfqw2")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="buy_large" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_bxmv3")
 texture_pressed = ExtResource("22_t26lk")
@@ -283,11 +309,31 @@ texture_disabled = ExtResource("24_wypge")
 layout_mode = 2
 
 [node name="buy_upgrade" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = SubResource("AnimatedTexture_ayi2o")
 texture_pressed = ExtResource("27_7lu5g")
 texture_hover = ExtResource("28_kd0rt")
 texture_disabled = ExtResource("29_0nj4f")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("30_x7mik")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/TextureButton"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 57.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.0431373, 0, 0.160784, 1)
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [node name="Level1" parent="." instance=ExtResource("10_u8s8h")]
 position = Vector2(279, 125)
@@ -296,4 +342,8 @@ position = Vector2(279, 125)
 wait_time = 0.2
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/buy_small" to="." method="_on_buy_small_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/buy_med" to="." method="_on_buy_med_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large" to="." method="_on_buy_large_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade" to="." method="_on_buy_upgrade_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

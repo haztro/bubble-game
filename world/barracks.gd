@@ -16,18 +16,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		new_bubble("small")
+	pass
+		
 	
 	
 func add_bubble_node(bubble_size):
 	var bubble = null
 	if bubble_size == 'small':
 		bubble = bubble_small_scene.instantiate()
+		get_parent().buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
 	elif bubble_size == 'medium':
 		bubble = bubble_medium_scene.instantiate()
+		get_parent().buy_med.disabled = !(Game.bubble_bux >= Game.SMALL_MED)
 	elif bubble_size == 'large':
 		bubble = bubble_large_scene.instantiate()
+		get_parent().buy_large.disabled = !(Game.bubble_bux >= Game.SMALL_LARGE)
 
 	bubble.position = position + Vector2(22, -22)
 	get_parent().connect("run_to_next", bubble.run_to_next)
@@ -46,6 +49,7 @@ func new_bubble(bubble_size):
 	
 func spawn_bubble():
 	add_bubble_node(current_bubble_size)
+	pass
 
 
 func upgrade():
