@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dsu1qtt3qssgm"
+path="res://.godot/imported/QUT 8.wav-a586f9e3f66631238168750581555af5.sample"
+
+[deps]
+
+source_file="res://assets/audio/button/QUT 8.wav"
+dest_files=["res://.godot/imported/QUT 8.wav-a586f9e3f66631238168750581555af5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
