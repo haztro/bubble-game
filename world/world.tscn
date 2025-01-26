@@ -130,7 +130,7 @@ position = Vector2(-85, 90)
 init_position = Vector2(-85, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 45.0
+wait_time = 30.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

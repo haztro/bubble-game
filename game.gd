@@ -42,10 +42,10 @@ var level: int = 1
 
 
 func inc_speed_cost(tier):
-	UPGRADE_SPEED_COST += 10
+	UPGRADE_SPEED_COST *= 2
 	
 func inc_value_cost(tier):
-	UPGRADE_WORTH_COST += 10
+	UPGRADE_WORTH_COST *= 2
 
 
 func add_bubble(bubble: Bubble):
