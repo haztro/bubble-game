@@ -22,8 +22,8 @@ const MAX_WORTH: int = 10
 
 const MAX_LEVELS: int = 8
 
-var UPGRADE_SPEED_COST: float = 10
-var UPGRADE_WORTH_COST: float = 10
+var UPGRADE_SPEED_COST: float = 20
+var UPGRADE_WORTH_COST: float = 20
 
 
 const SMALL_COST: float = 10
@@ -42,10 +42,10 @@ var level: int = 1
 
 
 func inc_speed_cost(tier):
-	UPGRADE_SPEED_COST *= 2
+	UPGRADE_SPEED_COST *= 4
 	
 func inc_value_cost(tier):
-	UPGRADE_WORTH_COST *= 2
+	UPGRADE_WORTH_COST *= 4
 
 
 func add_bubble(bubble: Bubble):
