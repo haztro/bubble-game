@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://co6lidwpj4p75"
+=======
+uid="uid://bt23lxlb1x680"
+>>>>>>> ad290c729d3fc73a1cf7ce5cda0fab1887c94bf7
 path="res://.godot/imported/numbers-Sheet.png-4dce71e350413a9e2f60fc625e1c9789.ctex"
 metadata={
 "vram_texture": false
