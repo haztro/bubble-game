@@ -22,9 +22,23 @@ var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
 var bubble_large_scene = preload("res://units/bubble_large.tscn")
 
 var level1_scene = preload("res://levels/level_1.tscn")
+var level2_scene = preload("res://levels/level_2.tscn")
+var level3_scene = preload("res://levels/level_3.tscn")
+var level4_scene = preload("res://levels/level_4.tscn")
+var level5_scene = preload("res://levels/level_5.tscn")
+var level6_scene = preload("res://levels/level_6.tscn")
+var level7_scene = preload("res://levels/level_7.tscn")
+var level8_scene = preload("res://levels/level_8.tscn")
 
 
-var all_levels = [level1_scene, level1_scene]
+var all_levels = [level1_scene, 
+				level2_scene, 
+				level3_scene, 
+				level4_scene, 
+				level5_scene, 
+				level6_scene, 
+				level7_scene,
+				level8_scene]
 
 var menu = true
 

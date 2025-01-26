@@ -34,7 +34,7 @@ const LARGE_COST: float = 100
 var bubbles = {}
 var bubble_id: int = 0
 
-var bubble_bux = 10000
+var bubble_bux = 30
 
 
 var mode: String = "base"
