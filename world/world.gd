@@ -26,13 +26,11 @@ var level1_scene = preload("res://levels/level_1.tscn")
 
 var all_levels = [level1_scene, level1_scene]
 
+var menu = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#var tween = get_tree().create_tween()
-	#tween.tween_property($Camera2D, "position", Vector2(0, 108), 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	
 	round_timer.start()	
 	
 	for bubble in get_tree().get_nodes_in_group("bubble"):
@@ -189,6 +187,7 @@ func _on_buy_large_pressed() -> void:
 
 func _on_title_screen_finished() -> void:
 	$CanvasLayer/Control.visible = true
+	menu = false
 
 
 func _on_speed_upgrade_pressed() -> void:
