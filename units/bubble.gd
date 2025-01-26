@@ -37,6 +37,7 @@ func _ready() -> void:
 		#modulate = Color.RED
 	else:
 		add_to_group("human")
+		$Timer.wait_time = randf_range(0.5, 2)
 		_fsm.set_state("StateSearch")
 		if not split:
 			_sprite.frame = 24
@@ -58,6 +59,7 @@ func run_to_next():
 	
 	
 func start_battle():
+	$Timer.start()
 	_fsm.set_state("StateSearch")
 
 	
@@ -120,6 +122,9 @@ func die():
 	var offset1 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
 	var offset2 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
 
+	$AudioStreamPlayer2D.set_pitch_scale(randf_range(0.85, 1.15))
+	$AudioStreamPlayer2D.play()
+
 	match bubble_size:
 		'small':
 			pass
@@ -144,3 +149,9 @@ func attack():
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	#print(is_enemy, anim_name)
 	pass
+
+
+func _on_timer_timeout() -> void:
+	if randf() <= 0.8:
+		$cry.set_pitch_scale(randf_range(0.85, 1.15))
+		$cry.play()

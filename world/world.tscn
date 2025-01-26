@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=49 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="PackedScene" uid="uid://qlfymm5u3u08" path="res://world/parallax_bg.tscn" id="2_pyxql"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bs8iyvmph2hry" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium5.png" id="29_0nj4f"]
 [ext_resource type="Texture2D" uid="uid://cta1o24brb18w" path="res://assets/ui/resource/resource-tab.png" id="30_x7mik"]
 [ext_resource type="FontFile" uid="uid://cpn6mik1fef17" path="res://assets/fonts/3-by-5-pixel-font.ttf" id="31_behwo"]
+[ext_resource type="AudioStream" uid="uid://ciirwke4b6n6g" path="res://assets/audio/button/click.mp3" id="39_c1qpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryjhi"]
 size = Vector2(401, 20)
@@ -129,7 +130,7 @@ position = Vector2(-85, 90)
 init_position = Vector2(-85, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 10.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -295,6 +296,9 @@ position = Vector2(279, 125)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="button" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("39_c1qpx")
 
 [connection signal="finished" from="TitleScreen" to="." method="_on_title_screen_finished"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

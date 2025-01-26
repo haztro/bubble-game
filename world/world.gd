@@ -125,6 +125,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_buy_upgrade_pressed() -> void:
+	$button.play()
 	if $barracks.tier == 0:
 		if Game.bubble_bux >= Game.BARRACKS_TIER1_COST:
 			if buy_med.get_parent().visible == false:
@@ -149,6 +150,7 @@ func update_buttons():
 
 
 func _on_buy_small_pressed() -> void:
+	$button.play()
 	if Game.bubble_bux >= Game.SMALL_COST:
 		Game.bubble_bux -= Game.SMALL_COST
 		buy_small.disabled = true
@@ -158,6 +160,7 @@ func _on_buy_small_pressed() -> void:
 
 
 func _on_buy_med_pressed() -> void:
+	$button.play()
 	if Game.bubble_bux >= Game.MED_COST:
 		Game.bubble_bux -= Game.MED_COST
 		buy_med.disabled = true
@@ -168,6 +171,7 @@ func _on_buy_med_pressed() -> void:
 
 
 func _on_buy_large_pressed() -> void:
+	$button.play()
 	if Game.bubble_bux >= Game.LARGE_COST:
 		Game.bubble_bux -= Game.LARGE_COST
 		buy_large.disabled = true
@@ -182,6 +186,7 @@ func _on_title_screen_finished() -> void:
 
 
 func _on_speed_upgrade_pressed() -> void:
+	$button.play()
 	if Game.bubble_bux >= Game.UPGRADE_SPEED_COST:
 		Game.bubble_bux -= Game.UPGRADE_SPEED_COST
 		$bubblemaker.upgrade()
@@ -192,6 +197,7 @@ func _on_speed_upgrade_pressed() -> void:
 
 
 func _on_value_upgrade_pressed() -> void:
+	$button.play()
 	if Game.bubble_bux >= Game.UPGRADE_WORTH_COST:
 		Game.bubble_bux -= Game.UPGRADE_WORTH_COST
 		$bubblemaker.upgrade_worth()

@@ -21,13 +21,14 @@ func _process(delta: float) -> void:
 	
 	
 func add_bubble_node(bubble_size):
+	$AudioStreamPlayer2D.play()
 	var bubble = null
 	if bubble_size == 'small':
 		bubble = bubble_small_scene.instantiate()
 		get_parent().buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
 	elif bubble_size == 'medium':
 		bubble = bubble_medium_scene.instantiate()
-		get_parent().buy_med.disabled = !(Game.bubble_bux >= Game.SMALL_MED)
+		get_parent().buy_med.disabled = !(Game.bubble_bux >= Game.MED_COST)
 	elif bubble_size == 'large':
 		bubble = bubble_large_scene.instantiate()
 		get_parent().buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)

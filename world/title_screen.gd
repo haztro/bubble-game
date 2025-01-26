@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 
 func _on_texture_button_pressed() -> void:
 	if not pressed:
+		$AudioStreamPlayer2D.play()
 		pressed = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(camera, "position", Vector2(camera.position.x + 384, camera.position.y), 2.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)

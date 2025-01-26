@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://568kua6fped3"]
+[gd_scene load_steps=32 format=3 uid="uid://568kua6fped3"]
 
 [ext_resource type="Script" path="res://units/bubble.gd" id="1_gf67b"]
 [ext_resource type="PackedScene" uid="uid://u37pira5q4ws" path="res://units/states/state_machine.tscn" id="2_qvavh"]
@@ -8,6 +8,19 @@
 [ext_resource type="Script" path="res://units/states/state_search.gd" id="5_kbu8d"]
 [ext_resource type="Script" path="res://units/states/state_attack.gd" id="6_gvci1"]
 [ext_resource type="Script" path="res://units/states/state_run.gd" id="8_eaxyn"]
+[ext_resource type="AudioStream" uid="uid://d08j31h2wlf6x" path="res://assets/audio/pops/pop_1.mp3" id="9_ylcjk"]
+[ext_resource type="AudioStream" uid="uid://fvvpn7ek65ns" path="res://assets/audio/pops/pop_2.mp3" id="10_05sc2"]
+[ext_resource type="AudioStream" uid="uid://blajjijv88gcc" path="res://assets/audio/pops/pop_3.mp3" id="11_n056w"]
+[ext_resource type="AudioStream" uid="uid://c8njaod5jtckd" path="res://assets/audio/pops/pop_4.mp3" id="12_klvte"]
+[ext_resource type="AudioStream" uid="uid://s6meytja5eqx" path="res://assets/audio/pops/pop_5.mp3" id="13_bixt4"]
+[ext_resource type="AudioStream" uid="uid://vesn6napoy0h" path="res://assets/audio/warcrys/warcry_1.mp3" id="14_e30ti"]
+[ext_resource type="AudioStream" uid="uid://ddrotbrsxy048" path="res://assets/audio/warcrys/warcry_2.mp3" id="15_vfuev"]
+[ext_resource type="AudioStream" uid="uid://hdrsbi2r2wia" path="res://assets/audio/warcrys/warcry_3.mp3" id="16_8pxbg"]
+[ext_resource type="AudioStream" uid="uid://cttbyenj7ik2p" path="res://assets/audio/warcrys/warcry_4.mp3" id="17_ej6gy"]
+[ext_resource type="AudioStream" uid="uid://bghju6ecsu5sh" path="res://assets/audio/warcrys/warcry_5.mp3" id="18_wq013"]
+[ext_resource type="AudioStream" uid="uid://d2wxyv3omrfow" path="res://assets/audio/warcrys/warcry_6.mp3" id="19_klevd"]
+[ext_resource type="AudioStream" uid="uid://dlqn84jukxvra" path="res://assets/audio/warcrys/warcry_7.mp3" id="20_8pw0g"]
+[ext_resource type="AudioStream" uid="uid://csxjodquldoxt" path="res://assets/audio/warcrys/warcry_8.mp3" id="21_bhjmu"]
 
 [sub_resource type="Animation" id="Animation_a7tb7"]
 resource_name = "idle"
@@ -139,6 +152,25 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_jok2q"]
 radius = 5.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_omdc7"]
+streams_count = 5
+stream_0/stream = ExtResource("9_ylcjk")
+stream_1/stream = ExtResource("10_05sc2")
+stream_2/stream = ExtResource("11_n056w")
+stream_3/stream = ExtResource("12_klvte")
+stream_4/stream = ExtResource("13_bixt4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fttp2"]
+streams_count = 8
+stream_0/stream = ExtResource("14_e30ti")
+stream_1/stream = ExtResource("15_vfuev")
+stream_2/stream = ExtResource("16_8pxbg")
+stream_3/stream = ExtResource("17_ej6gy")
+stream_4/stream = ExtResource("18_wq013")
+stream_5/stream = ExtResource("19_klevd")
+stream_6/stream = ExtResource("20_8pw0g")
+stream_7/stream = ExtResource("21_bhjmu")
+
 [node name="bubble" type="CharacterBody2D" groups=["bubble"]]
 script = ExtResource("1_gf67b")
 
@@ -189,5 +221,13 @@ radius = 8.0
 neighbor_distance = 100.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_omdc7")
+
+[node name="cry" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fttp2")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

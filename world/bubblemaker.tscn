@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvgiipc3atioa"]
+[gd_scene load_steps=9 format=3 uid="uid://bvgiipc3atioa"]
 
 [ext_resource type="PackedScene" uid="uid://6338teuh86v8" path="res://world/building.tscn" id="1_etf0x"]
 [ext_resource type="Script" path="res://world/bubblemaker.gd" id="2_ejchm"]
 [ext_resource type="Texture2D" uid="uid://cpgqnxkl3k2a1" path="res://assets/environment/building-resource-Sheet.png" id="3_upqv2"]
+[ext_resource type="AudioStream" uid="uid://soulc0trobqx" path="res://assets/audio/money/spawn.mp3" id="4_37mo3"]
 
 [sub_resource type="Animation" id="Animation_vcnx7"]
 resource_name = "money"
@@ -90,5 +91,8 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="." index="2"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("4_37mo3")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
