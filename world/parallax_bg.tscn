@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://qlfymm5u3u08"]
+
+[ext_resource type="Texture2D" uid="uid://ds0xm4ddld286" path="res://assets/environment/sky.png" id="1_r5fus"]
+[ext_resource type="Script" path="res://world/parallax_bg.gd" id="1_snqki"]
+[ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="2_501eh"]
+[ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="3_fqpim"]
+[ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="4_hgbjx"]
+[ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="5_dcp3y"]
+
+[node name="ParallaxBG" type="Node2D"]
+z_index = -10
+position = Vector2(128, 128)
+script = ExtResource("1_snqki")
+
+[node name="Sky" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(768, 0)
+
+[node name="Sky_1" type="Sprite2D" parent="Sky"]
+texture_filter = 1
+texture = ExtResource("1_r5fus")
+offset = Vector2(-256, 0)
+
+[node name="Sky_2" type="Sprite2D" parent="Sky"]
+texture_filter = 1
+texture = ExtResource("1_r5fus")
+
+[node name="Sky_3" type="Sprite2D" parent="Sky"]
+texture_filter = 1
+texture = ExtResource("1_r5fus")
+offset = Vector2(256, 0)
+
+[node name="Mountain3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
+
+[node name="Mountain3_1" type="Sprite2D" parent="Mountain3"]
+texture_filter = 1
+texture = ExtResource("2_501eh")
+offset = Vector2(-256, 0)
+
+[node name="Mountain3_2" type="Sprite2D" parent="Mountain3"]
+texture_filter = 1
+texture = ExtResource("2_501eh")
+
+[node name="Mountain3_3" type="Sprite2D" parent="Mountain3"]
+texture_filter = 1
+texture = ExtResource("2_501eh")
+offset = Vector2(256, 0)
+
+[node name="Mountain2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="Mountain2"]
+texture_filter = 1
+texture = ExtResource("3_fqpim")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="Mountain2"]
+texture_filter = 1
+texture = ExtResource("3_fqpim")
+
+[node name="Mountain2_3" type="Sprite2D" parent="Mountain2"]
+texture_filter = 1
+texture = ExtResource("3_fqpim")
+offset = Vector2(256, 0)
+
+[node name="Mountain4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="Mountain4"]
+texture_filter = 1
+texture = ExtResource("4_hgbjx")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="Mountain4"]
+texture_filter = 1
+texture = ExtResource("4_hgbjx")
+
+[node name="Mountain2_3" type="Sprite2D" parent="Mountain4"]
+texture_filter = 1
+texture = ExtResource("4_hgbjx")
+offset = Vector2(256, 0)
+
+[node name="foreground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(0, 20)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="foreground"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="foreground"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+
+[node name="Mountain2_3" type="Sprite2D" parent="foreground"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+offset = Vector2(256, 0)
+
+[node name="foreground2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 0)
+scroll_offset = Vector2(0, 40)
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
+
+[node name="Mountain2_1" type="Sprite2D" parent="foreground2"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+offset = Vector2(-256, 0)
+
+[node name="Mountain2_2" type="Sprite2D" parent="foreground2"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+
+[node name="Mountain2_3" type="Sprite2D" parent="foreground2"]
+texture_filter = 1
+texture = ExtResource("5_dcp3y")
+offset = Vector2(256, 0)

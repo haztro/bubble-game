@@ -3,7 +3,7 @@ extends "res://world/building.gd"
 
 
 var money_bubble_scene = preload("res://world/money_bubble.tscn")
-
+var worth = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,10 +39,15 @@ func speed_function():
 	
 
 func worth_function():
-	return tier
+	return worth
 	
 	
 func upgrade():
 	super.upgrade()
-	$Timer.wait_time = speed_function()
+	$Timer.wait_time = 1 / float(speed_function())
+	$Timer.start()
+	
+	
+func upgrade_worth():
+	worth += 1
 	

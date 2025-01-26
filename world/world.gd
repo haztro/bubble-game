@@ -10,6 +10,9 @@ signal start_battle
 @onready var buy_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade")
 @onready var money_label = get_node("CanvasLayer/Control/MarginContainer/TextureButton/Label")
 
+@onready var speed_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5/speed_upgrade")
+@onready var value_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer6/value_upgrade")
+
 @onready var buttons = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer")
 @onready var round_timer = get_node("RoundTimer")
 
@@ -23,6 +26,9 @@ var level1_scene = preload("res://levels/level_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#var tween = get_tree().create_tween()
+	#tween.tween_property($Camera2D, "position", Vector2(0, 108), 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	
 	round_timer.start()	
 	
 	for bubble in get_tree().get_nodes_in_group("bubble"):
@@ -38,6 +44,9 @@ func _process(delta: float) -> void:
 		buy_upgrade.disabled = !(Game.bubble_bux >= Game.BARRACKS_TIER1_COST)
 	elif $barracks.tier == 1:
 		buy_upgrade.disabled = !(Game.bubble_bux >= Game.BARRACKS_TIER2_COST)
+		
+	speed_upgrade.disabled = (Game.bubble_bux < Game.UPGRADE_SPEED_COST or $bubblemaker.tier >= Game.MAX_SPEED)
+	value_upgrade.disabled = (Game.bubble_bux < Game.UPGRADE_WORTH_COST or $bubblemaker.worth >= Game.MAX_WORTH)
 		
 	
 func spawn_bubble(bubble_pos, bubble_size, is_enemy):
@@ -66,7 +75,6 @@ func check_win():
 		
 		
 func win_animation():
-	print("WIN")
 	await get_tree().create_timer(Game.CELEBRATION_TIME)
 	emit_signal("run_to_next")
 	var tween = get_tree().create_tween()
@@ -161,3 +169,27 @@ func _on_buy_large_pressed() -> void:
 		
 	#buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
 		
+
+
+func _on_title_screen_finished() -> void:
+	$CanvasLayer/Control.visible = true
+
+
+func _on_speed_upgrade_pressed() -> void:
+	if Game.bubble_bux >= Game.UPGRADE_SPEED_COST:
+		Game.bubble_bux -= Game.UPGRADE_SPEED_COST
+		$bubblemaker.upgrade()
+		Game.inc_speed_cost($bubblemaker.tier)
+		if $bubblemaker.tier >= Game.MAX_SPEED:
+			speed_upgrade.get_parent().modulate.a = 0
+		speed_upgrade.get_parent().get_node("Label").text = '-'+str(Game.UPGRADE_SPEED_COST)
+
+
+func _on_value_upgrade_pressed() -> void:
+	if Game.bubble_bux >= Game.UPGRADE_WORTH_COST:
+		Game.bubble_bux -= Game.UPGRADE_WORTH_COST
+		$bubblemaker.upgrade_worth()
+		Game.inc_value_cost($bubblemaker.worth)
+		if $bubblemaker.worth >= Game.MAX_WORTH:
+			value_upgrade.get_parent().modulate.a = 0
+		value_upgrade.get_parent().get_node("Label").text = '-'+str(Game.UPGRADE_WORTH_COST)

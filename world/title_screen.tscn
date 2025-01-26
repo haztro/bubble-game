@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://clug72fd61e6v"]
+
+[ext_resource type="Script" path="res://world/title_screen.gd" id="1_o5gwj"]
+[ext_resource type="Texture2D" uid="uid://dw8x83pdv6x6" path="res://assets/ui/game-logo-Sheet.png" id="2_afxvl"]
+[ext_resource type="Texture2D" uid="uid://dim6d3wchyb7c" path="res://assets/ui/buttons/button-start1.png" id="3_ijvlv"]
+[ext_resource type="Texture2D" uid="uid://btxpk5p424ep7" path="res://assets/ui/buttons/button-start2.png" id="4_6whia"]
+[ext_resource type="Texture2D" uid="uid://ctmgs41amtpvq" path="res://assets/ui/buttons/button-start4.png" id="5_fhm2y"]
+[ext_resource type="Texture2D" uid="uid://b3dnd0v3gkyrf" path="res://assets/ui/buttons/button-start3.png" id="6_h8pnx"]
+[ext_resource type="Texture2D" uid="uid://c6btkm5pw5h0w" path="res://assets/ui/buttons/button-start5.png" id="7_ko15b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbbcr"]
+atlas = ExtResource("2_afxvl")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umjbf"]
+atlas = ExtResource("2_afxvl")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl4ga"]
+atlas = ExtResource("2_afxvl")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6dal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbbcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umjbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl4ga")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_i2nqu"]
+frames = 2
+frame_0/texture = ExtResource("3_ijvlv")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("4_6whia")
+frame_1/duration = 0.5
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5gwj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(192, 76)
+sprite_frames = SubResource("SpriteFrames_c6dal")
+frame_progress = 0.130259
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 162.0
+offset_top = 132.0
+offset_right = 226.0
+offset_bottom = 172.0
+texture_normal = SubResource("AnimatedTexture_i2nqu")
+texture_pressed = ExtResource("5_fhm2y")
+texture_hover = ExtResource("6_h8pnx")
+texture_disabled = ExtResource("7_ko15b")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
