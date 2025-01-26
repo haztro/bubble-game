@@ -25,7 +25,13 @@ var bubble_id: int = 0
 func _ready() -> void:
 	if is_enemy:
 		add_to_group("enemy")
-		modulate = Color.RED
+		if bubble_size == 'small':
+			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-small-Sheet.png")
+		elif bubble_size == 'medium':
+			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
+		elif bubble_size == 'large':
+			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-large-Sheet.png")
+		#modulate = Color.RED
 	else:
 		add_to_group("human")
 		_sprite.frame = 24

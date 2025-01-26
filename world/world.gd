@@ -3,7 +3,11 @@ extends Node2D
 signal run_to_next
 signal start_battle
 
-@onready var progress_bar = get_node("CanvasLayer/Control/MarginContainer/ProgressBar")
+@onready var progress_bar = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/ProgressBar")
+@onready var buy_small = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/buy_small")
+@onready var buy_med = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/buy_med")
+@onready var buy_large = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large")
+@onready var buy_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade")
 @onready var round_timer = get_node("RoundTimer")
 
 var bubble_small_scene = preload("res://units/bubble_small.tscn")
@@ -24,11 +28,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("left click"):
-		spawn_bubble(get_global_mouse_position(), 'large', false)
-	if Input.is_action_just_pressed("right click"):
-		spawn_bubble(get_global_mouse_position(), 'large', true)
-		
 	progress_bar.value = int(100 * (round_timer.time_left / round_timer.wait_time))
 
 func spawn_bubble(bubble_pos, bubble_size, is_enemy):
@@ -74,7 +73,7 @@ func start_base():
 	Game.level += 1
 	Game.mode = "base"
 	$RoundTimer.start()
-	progress_bar.visible = true
+	progress_bar.modulate.a = 1
 	var lvl = level1_scene.instantiate()
 	lvl.position = Vector2(Game.level * 384 - 384/4, 125)
 	add_child(lvl)
@@ -84,7 +83,7 @@ func start_base():
 
 
 func _on_round_timer_timeout() -> void:
-	progress_bar.visible = false
+	progress_bar.modulate.a = 0
 	var tween = get_tree().create_tween()   
 	tween.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	await tween.finished
