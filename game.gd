@@ -18,12 +18,12 @@ const BARRACKS_TIER2_COST: float = 100
 
 
 const MAX_SPEED: int = 10
-const MAX_WORTH: int = 5
+const MAX_WORTH: int = 10
 
 const MAX_LEVELS: int = 8
 
-var UPGRADE_SPEED_COST: float = 50
-var UPGRADE_WORTH_COST: float = 50
+var UPGRADE_SPEED_COST: float = 10
+var UPGRADE_WORTH_COST: float = 10
 
 
 const SMALL_COST: float = 10
@@ -42,10 +42,10 @@ var level: int = 1
 
 
 func inc_speed_cost(tier):
-	UPGRADE_SPEED_COST += 50
+	UPGRADE_SPEED_COST += 10
 	
 func inc_value_cost(tier):
-	UPGRADE_WORTH_COST += 50 
+	UPGRADE_WORTH_COST += 10
 
 
 func add_bubble(bubble: Bubble):

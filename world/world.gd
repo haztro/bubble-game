@@ -45,8 +45,6 @@ var menu = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	round_timer.start()	
-	
 	for bubble in get_tree().get_nodes_in_group("bubble"):
 		start_battle.connect(bubble.start_battle)
 
@@ -200,6 +198,7 @@ func _on_buy_large_pressed() -> void:
 
 
 func _on_title_screen_finished() -> void:
+	round_timer.start()	
 	$CanvasLayer/Control.visible = true
 	menu = false
 
