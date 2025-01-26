@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var anim_player = get_node("AnimationPlayer")
 @onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
 
+var run_speed = 80
 var health = 1.0
 
 #var velocity: Vector2 = Vector2.ZERO
@@ -19,6 +20,8 @@ var target = null
 var destination: Vector2 = Vector2.ZERO
 var direction: Vector2 = Vector2.ZERO
 var bubble_id: int = 0
+
+var split = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,8 +37,10 @@ func _ready() -> void:
 		#modulate = Color.RED
 	else:
 		add_to_group("human")
-		_sprite.frame = 24
-		_fsm.set_process_mode(Node.PROCESS_MODE_DISABLED)
+		_fsm.set_state("StateSearch")
+		if not split:
+			_sprite.frame = 24
+			_fsm.set_process_mode(Node.PROCESS_MODE_DISABLED)
 		
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 
@@ -47,7 +52,6 @@ func _process(delta: float) -> void:
 	
 
 func run_to_next():
-	print("RUNNING")
 	if Game.mode == "battle":
 		destination = Vector2(randi_range(0, 100), randi_range(75, 190)) + Vector2(384 * Game.level, 0)
 	_fsm.set_state("StateRun")	
@@ -86,7 +90,7 @@ func _physics_process(delta):
 		if _fsm._state_name == "StateRun":
 			print(destination)
 			direction = position.direction_to(destination)
-			velocity = velocity.lerp(direction * speed, Game.ACCELERATION)
+			velocity = velocity.lerp(direction * run_speed, Game.ACCELERATION)
 			if position.x > destination.x:
 				_sprite.set_flip_h(1)
 				$CollisionShape2D.position.x = 3

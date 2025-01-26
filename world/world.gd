@@ -9,6 +9,7 @@ signal start_battle
 @onready var buy_large = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large")
 @onready var buy_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade")
 @onready var money_label = get_node("CanvasLayer/Control/MarginContainer/TextureButton/Label")
+@onready var upgrade_label = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/Label")
 
 @onready var speed_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5/speed_upgrade")
 @onready var value_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer6/value_upgrade")
@@ -60,6 +61,7 @@ func spawn_bubble(bubble_pos, bubble_size, is_enemy):
 	
 	bubble.is_enemy = is_enemy
 	bubble.position = bubble_pos
+	bubble.split = true
 	add_child(bubble)
 	
 	
@@ -69,6 +71,8 @@ func check_win():
 	
 	if num_human <= 0:
 		$Timer.stop()
+		get_tree().create_timer(2)
+		get_tree().reload_current_scene()
 	elif num_enemy <= 0:
 		win_animation()
 		$Timer.stop()
@@ -127,6 +131,8 @@ func _on_buy_upgrade_pressed() -> void:
 				Game.bubble_bux -= Game.BARRACKS_TIER1_COST
 				buy_med.get_parent().visible = true
 				$barracks.upgrade()
+				upgrade_label.text = "-" + str(Game.BARRACKS_TIER2_COST)
+				
 	elif $barracks.tier == 1:
 		if Game.bubble_bux >= Game.BARRACKS_TIER2_COST:
 			if buy_large.get_parent().visible == false:

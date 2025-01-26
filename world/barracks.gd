@@ -30,7 +30,7 @@ func add_bubble_node(bubble_size):
 		get_parent().buy_med.disabled = !(Game.bubble_bux >= Game.SMALL_MED)
 	elif bubble_size == 'large':
 		bubble = bubble_large_scene.instantiate()
-		get_parent().buy_large.disabled = !(Game.bubble_bux >= Game.SMALL_LARGE)
+		get_parent().buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
 
 	bubble.position = position + Vector2(22, -22)
 	get_parent().connect("run_to_next", bubble.run_to_next)

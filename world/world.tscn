@@ -263,6 +263,14 @@ texture_pressed = ExtResource("27_7lu5g")
 texture_hover = ExtResource("28_kd0rt")
 texture_disabled = ExtResource("29_0nj4f")
 
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "-50
+"
+
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/MarginContainer"]
 texture_filter = 1
 layout_mode = 2
