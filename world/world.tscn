@@ -194,11 +194,13 @@ offset = Vector2(256, 0)
 
 [node name="barracks" parent="." instance=ExtResource("8_cm61e")]
 z_index = 2
-position = Vector2(-98, 163)
+position = Vector2(-68, 163)
+init_position = Vector2(-68, 163)
 
 [node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
 z_index = 2
-position = Vector2(-115, 90)
+position = Vector2(-85, 90)
+init_position = Vector2(-85, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
 wait_time = 10.0
@@ -240,7 +242,7 @@ show_percentage = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 35
+theme_override_constants/margin_top = 115
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
