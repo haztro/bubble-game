@@ -45,6 +45,7 @@ var menu = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$menu_music.play()
 	for bubble in get_tree().get_nodes_in_group("bubble"):
 		start_battle.connect(bubble.start_battle)
 
@@ -98,7 +99,14 @@ func win_animation():
 	tween.tween_property($barracks, "position", $barracks.init_position + Vector2(384*Game.level, 0), Game.BUILDING_FLY_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel()
 	tween.tween_property($bubblemaker, "position", $bubblemaker.init_position + Vector2(384*Game.level, 0), Game.BUILDING_FLY_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	
+	$base_screen.play()
+	tween.tween_property($base_screen, "volume_db", 0, 2)
+	tween.tween_property($battle_music, "volume_db", -80, 2)
+	
 	await get_tree().create_timer(Game.CAMERA_BUILDING_DELAY)
+	$battle_music.stop()
+	
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), Game.CAM_TO_BASE_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween2.tween_callback(start_base)
@@ -129,11 +137,21 @@ func _on_round_timer_timeout() -> void:
 	tween.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel()
 	tween.tween_property(buttons, "position", Vector2(-384/2, buttons.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	
+	$battle_music.play()
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property($base_screen, "volume_db", -80, 2)
+	tween2.tween_property($battle_music, "volume_db", 0, 2)
 	await tween.finished
+	
+	$base_music.stop()
+	
 	Game.mode = "battle"
 	$Timer.start()
 	emit_signal("start_battle")
 	
+	
+
 
 
 func _on_timer_timeout() -> void:
@@ -201,6 +219,13 @@ func _on_title_screen_finished() -> void:
 	round_timer.start()	
 	$CanvasLayer/Control.visible = true
 	menu = false
+	$base_screen.play()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property($menu_music, "volume_db", -80, 4)
+	tween.tween_property($base_screen, "volume_db", 0, 4)
+	await tween.finished
+	$menu_music.stop() 
 
 
 func _on_speed_upgrade_pressed() -> void:

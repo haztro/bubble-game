@@ -33,7 +33,7 @@ func _ready() -> void:
 		elif bubble_size == 'medium':
 			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
 		elif bubble_size == 'large':
-			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-large-Sheet.png")
+			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-big-Sheet.png")
 		#modulate = Color.RED
 	else:
 		add_to_group("human")
@@ -90,7 +90,6 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
 	else:
 		if _fsm._state_name == "StateRun":
-			print(destination)
 			direction = position.direction_to(destination)
 			velocity = velocity.lerp(direction * run_speed, Game.ACCELERATION)
 			if position.x > destination.x:
