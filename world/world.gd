@@ -84,7 +84,7 @@ func check_win():
 	
 	if num_human <= 0:
 		$Timer.stop()
-		get_tree().create_timer(2)
+		get_tree().create_timer(4)
 		get_tree().reload_current_scene()
 	elif num_enemy <= 0:
 		win_animation()

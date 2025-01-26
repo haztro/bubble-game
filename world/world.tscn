@@ -194,7 +194,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("31_behwo")
 theme_override_font_sizes/font_size = 8
-text = "-50"
+text = "-10"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -212,7 +212,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("31_behwo")
 theme_override_font_sizes/font_size = 8
-text = "-50"
+text = "-10"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

@@ -24,8 +24,10 @@ func process(delta):
 		
 	var smallest_distance = INF
 	for e in enemies:
-		if _entity.position.distance_squared_to(e.position) < smallest_distance:
+		var dist = _entity.position.distance_squared_to(e.position) 
+		if dist < smallest_distance:
 			target = e
+			smallest_distance = dist
 	
 	if target != null:
 		_entity.target = target
