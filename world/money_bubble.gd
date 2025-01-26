@@ -9,7 +9,7 @@ func _ready() -> void:
 	$Timer.wait_time = flight_time - 0.2
 	$Timer2.wait_time = flight_time + 0.1
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", Vector2(position.x, position.y - 150), flight_time*5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "position", Vector2(position.x, position.y - 60), flight_time*3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
 	$Timer.start()
 	$Timer2.start()
 
