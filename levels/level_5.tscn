@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddgurjgejpcvk"]
+
+[ext_resource type="PackedScene" uid="uid://bt8yhc2xe1xer" path="res://levels/level.tscn" id="1_e2gmw"]
+[ext_resource type="PackedScene" uid="uid://cf7ldb8ee2b6m" path="res://units/bubble_large.tscn" id="4_08vsu"]
+
+[node name="Level1" instance=ExtResource("1_e2gmw")]
+position = Vector2(2, 27)
+
+[node name="bubble_large" parent="." index="0" instance=ExtResource("4_08vsu")]
+position = Vector2(35, 2)
+is_enemy = true
+
+[node name="bubble_large2" parent="." index="1" instance=ExtResource("4_08vsu")]
+position = Vector2(1, -23)
+is_enemy = true
+
+[node name="bubble_large3" parent="." index="2" instance=ExtResource("4_08vsu")]
+position = Vector2(38, -39)
+is_enemy = true
