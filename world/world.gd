@@ -33,11 +33,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress_bar.value = int(100 * (round_timer.time_left / round_timer.wait_time))
 	money_label.text = str(Game.bubble_bux)
-	
-		
-	buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
-	buy_med.disabled = !(Game.bubble_bux >= Game.MED_COST)
-	buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
 
 	if $barracks.tier == 0:
 		buy_upgrade.disabled = !(Game.bubble_bux >= Game.BARRACKS_TIER1_COST)
@@ -130,18 +125,39 @@ func _on_buy_upgrade_pressed() -> void:
 				Game.bubble_bux -= Game.BARRACKS_TIER2_COST
 				buy_large.get_parent().visible = true
 				$barracks.upgrade()
+				buy_upgrade.get_parent().visible = false
+
+
+func update_buttons():
+	buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
+	buy_med.disabled = !(Game.bubble_bux >= Game.MED_COST)
+	buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
 
 
 func _on_buy_small_pressed() -> void:
 	if Game.bubble_bux >= Game.SMALL_COST:
+		Game.bubble_bux -= Game.SMALL_COST
+		buy_small.disabled = true
 		$barracks.new_bubble("small")
+
+	#buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
 
 
 func _on_buy_med_pressed() -> void:
 	if Game.bubble_bux >= Game.MED_COST:
+		Game.bubble_bux -= Game.MED_COST
+		buy_med.disabled = true
 		$barracks.new_bubble("medium")
+		
+	#buy_med.disabled = !(Game.bubble_bux >= Game.MED_COST)
+		
 
 
 func _on_buy_large_pressed() -> void:
 	if Game.bubble_bux >= Game.LARGE_COST:
+		Game.bubble_bux -= Game.LARGE_COST
+		buy_large.disabled = true
 		$barracks.new_bubble("large")
+		
+	#buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
+		
