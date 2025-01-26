@@ -9,8 +9,8 @@ func enter_state():
 	
 	
 func process(delta):
-	if _entity.target != null:
-		pass
+	if _entity.position.distance_squared_to(_entity.destination) < 100:
+		_fsm.set_state(idle_state.name)
 	
 	
 func exit_state():

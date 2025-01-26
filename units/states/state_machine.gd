@@ -31,7 +31,7 @@ func _process(delta):
 	
 	
 func set_state(new_state: String):	
-	print("SETTING STATE to ", new_state)
+	#print("SETTING STATE to ", new_state)
 	if not _states.has(new_state):	# Invalid state
 		return FAILED
 		

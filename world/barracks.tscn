@@ -76,6 +76,7 @@ _data = {
 
 [node name="barracks" instance=ExtResource("1_egryu")]
 script = ExtResource("2_gf3c3")
+init_position = Vector2(-98, 163)
 
 [node name="Sprite2D" parent="." index="0"]
 texture_filter = 1

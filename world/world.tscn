@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=13 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="7_q1t7q"]
 [ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
 [ext_resource type="PackedScene" uid="uid://bvgiipc3atioa" path="res://world/bubblemaker.tscn" id="9_a5g8c"]
+[ext_resource type="PackedScene" uid="uid://405r4p1wjn86" path="res://levels/level_1.tscn" id="10_u8s8h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
 bg_color = Color(1, 1, 1, 1)
@@ -144,13 +145,15 @@ texture = ExtResource("7_q1t7q")
 offset = Vector2(256, 0)
 
 [node name="barracks" parent="." instance=ExtResource("8_cm61e")]
-position = Vector2(-143, 162)
+z_index = 2
+position = Vector2(-98, 163)
 
 [node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
-position = Vector2(-160, 89)
+z_index = 2
+position = Vector2(-115, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 6.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -184,4 +187,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8vbjp")
 value = 100.0
 show_percentage = false
 
+[node name="Level1" parent="." instance=ExtResource("10_u8s8h")]
+position = Vector2(279, 125)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

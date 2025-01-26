@@ -41,14 +41,24 @@ func _process(delta: float) -> void:
 	
 
 func run_to_next():
+	print("RUNNING")
+	if Game.mode == "battle":
+		destination = Vector2(randi_range(0, 100), randi_range(75, 190)) + Vector2(384 * Game.level, 0)
 	_fsm.set_state("StateRun")	
+	
+	
+func start_battle():
+	_fsm.set_state("StateSearch")
 
 	
 func spawn_self():
 	anim_player.play("spawn")
 	await anim_player.animation_finished
 	_fsm.set_process_mode(Node.PROCESS_MODE_INHERIT)
-	_fsm.set_state("StateIdle")
+	if Game.mode == "battle":
+		_fsm.set_state("Search")
+	else:
+		_fsm.set_state("StateIdle")
 	
 	
 func _physics_process(delta):
@@ -58,7 +68,7 @@ func _physics_process(delta):
 			destination.x += Game.ATTACK_DISTANCE * (-1 if position.x < target.position.x else 1)
 			direction = position.direction_to(destination)
 			velocity = velocity.lerp(direction * speed, Game.ACCELERATION)
-			if position > target.position:
+			if position.x > target.position.x:
 				_sprite.set_flip_h(1)
 				$CollisionShape2D.position.x = 3
 			else:
@@ -67,7 +77,18 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
 	else:
-		velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
+		if _fsm._state_name == "StateRun":
+			print(destination)
+			direction = position.direction_to(destination)
+			velocity = velocity.lerp(direction * speed, Game.ACCELERATION)
+			if position.x > destination.x:
+				_sprite.set_flip_h(1)
+				$CollisionShape2D.position.x = 3
+			else:
+				_sprite.set_flip_h(0)
+				$CollisionShape2D.position.x = -3
+		else:
+			velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
 			
 	#navigation_agent.set_velocity(velocity)
 	move_and_slide()
@@ -98,8 +119,7 @@ func die():
 		'large':
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset1, "medium", is_in_group("enemy"))
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "medium", is_in_group("enemy"))
-			
-			
+		
 	await anim_player.animation_finished
 	queue_free()
 	
@@ -112,4 +132,5 @@ func attack():
 
 
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	print(is_enemy, anim_name)
+	#print(is_enemy, anim_name)
+	pass

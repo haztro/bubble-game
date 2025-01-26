@@ -1,6 +1,7 @@
 extends Node2D
 
 
+@export var init_position: Vector2
 @onready var anim_player = get_node("AnimationPlayer")
 
 

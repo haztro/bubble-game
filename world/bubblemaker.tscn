@@ -77,6 +77,7 @@ _data = {
 [node name="bubblemaker" instance=ExtResource("1_etf0x")]
 texture_filter = 1
 script = ExtResource("2_ejchm")
+init_position = Vector2(-115, 90)
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_upqv2")

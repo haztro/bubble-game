@@ -9,7 +9,8 @@ func _ready():
 	pass
 
 func enter_state():
-	_entity.anim_player.play("idle")
+	pass
+	#_entity.anim_player.play("idle")
 	#pass
 
 
