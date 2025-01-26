@@ -19,14 +19,18 @@ is_enemy = true
 position = Vector2(76, -20)
 is_enemy = true
 
-[node name="bubble_medium4" parent="." index="3" instance=ExtResource("3_1vja2")]
+[node name="bubble_large5" parent="." index="3" instance=ExtResource("2_ejye8")]
+position = Vector2(46, -37)
+is_enemy = true
+
+[node name="bubble_medium4" parent="." index="4" instance=ExtResource("3_1vja2")]
 position = Vector2(13, -54)
 is_enemy = true
 
-[node name="bubble_medium5" parent="." index="4" instance=ExtResource("3_1vja2")]
+[node name="bubble_medium5" parent="." index="5" instance=ExtResource("3_1vja2")]
 position = Vector2(69, -64)
 is_enemy = true
 
-[node name="bubble_medium6" parent="." index="5" instance=ExtResource("3_1vja2")]
+[node name="bubble_medium6" parent="." index="6" instance=ExtResource("3_1vja2")]
 position = Vector2(101, -44)
 is_enemy = true
