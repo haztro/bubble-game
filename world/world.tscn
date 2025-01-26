@@ -1,8 +1,8 @@
 [gd_scene load_steps=49 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
-[ext_resource type="PackedScene" uid="uid://qlfymm5u3u08" path="res://world/parallax_bg.tscn" id="2_pyxql"]
-[ext_resource type="PackedScene" uid="uid://clug72fd61e6v" path="res://world/title_screen.tscn" id="5_6p5ev"]
+[ext_resource type="PackedScene" path="res://world/parallax_bg.tscn" id="2_pyxql"]
+[ext_resource type="PackedScene" path="res://world/title_screen.tscn" id="5_6p5ev"]
 [ext_resource type="Texture2D" uid="uid://bhth5pi6uepgw" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed1.png" id="6_f2s57"]
 [ext_resource type="Texture2D" uid="uid://cdhqshhlibylr" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed2.png" id="7_t6r0d"]
 [ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
