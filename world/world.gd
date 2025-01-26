@@ -1,11 +1,97 @@
 extends Node2D
 
+signal run_to_next
+signal start_battle
+
+@onready var progress_bar = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/ProgressBar")
+@onready var buy_small = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/buy_small")
+@onready var buy_med = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/buy_med")
+@onready var buy_large = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large")
+@onready var buy_upgrade = get_node("CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade")
+@onready var round_timer = get_node("RoundTimer")
+
+var bubble_small_scene = preload("res://units/bubble_small.tscn")
+var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
+var bubble_large_scene = preload("res://units/bubble_large.tscn")
+
+var level1_scene = preload("res://levels/level_1.tscn")
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	round_timer.start()	
+	
+	for bubble in get_tree().get_nodes_in_group("bubble"):
+		start_battle.connect(bubble.start_battle)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	progress_bar.value = int(100 * (round_timer.time_left / round_timer.wait_time))
+
+func spawn_bubble(bubble_pos, bubble_size, is_enemy):
+	var bubble = null
+	if bubble_size == 'small':
+		bubble = bubble_small_scene.instantiate()
+	elif bubble_size == 'medium':
+		bubble = bubble_medium_scene.instantiate()
+	elif bubble_size == 'large':
+		bubble = bubble_large_scene.instantiate()
+	
+	bubble.is_enemy = is_enemy
+	bubble.position = bubble_pos
+	add_child(bubble)
+	
+	
+func check_win():
+	var num_human = get_tree().get_node_count_in_group("human")
+	var num_enemy = get_tree().get_node_count_in_group("enemy")
+	
+	if num_human <= 0:
+		$Timer.stop()
+	elif num_enemy <= 0:
+		win_animation()
+		$Timer.stop()
+		
+		
+func win_animation():
+	print("WIN")
+	await get_tree().create_timer(Game.CELEBRATION_TIME)
+	emit_signal("run_to_next")
+	var tween = get_tree().create_tween()
+	tween.tween_property($barracks, "position", $barracks.init_position + Vector2(384*Game.level, 0), Game.BUILDING_FLY_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.set_parallel()
+	tween.tween_property($bubblemaker, "position", $bubblemaker.init_position + Vector2(384*Game.level, 0), Game.BUILDING_FLY_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(Game.CAMERA_BUILDING_DELAY)
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), Game.CAM_TO_BASE_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween2.tween_callback(start_base)
+
+	
+func start_base():
+	Game.level += 1
+	Game.mode = "base"
+	$RoundTimer.start()
+	progress_bar.modulate.a = 1
+	var lvl = level1_scene.instantiate()
+	lvl.position = Vector2(Game.level * 384 - 384/4, 125)
+	add_child(lvl)
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		start_battle.connect(enemy.start_battle)
+	
+
+
+func _on_round_timer_timeout() -> void:
+	progress_bar.modulate.a = 0
+	var tween = get_tree().create_tween()   
+	tween.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	await tween.finished
+	Game.mode = "battle"
+	$Timer.start()
+	emit_signal("start_battle")
+	
+
+
+func _on_timer_timeout() -> void:
+	check_win()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh8ro0aubcde3"
-path="res://.godot/imported/numbers-Sheet.png-4dce71e350413a9e2f60fc625e1c9789.ctex"
+uid="uid://lv4vn2l50727"
+path="res://.godot/imported/bubble-enemy-big-Sheet.png-33c6733c05ee180d3e80157bccd5926f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/numbers-Sheet.png"
-dest_files=["res://.godot/imported/numbers-Sheet.png-4dce71e350413a9e2f60fc625e1c9789.ctex"]
+source_file="res://assets/characters/enemy/bubble-enemy-big-Sheet.png"
+dest_files=["res://.godot/imported/bubble-enemy-big-Sheet.png-33c6733c05ee180d3e80157bccd5926f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh8ro0aubcde3"
-path="res://.godot/imported/numbers-Sheet.png-4dce71e350413a9e2f60fc625e1c9789.ctex"
+uid="uid://b3dnd0v3gkyrf"
+path="res://.godot/imported/button-start3.png-968c94028c280ef15f2627b15725a84b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/numbers-Sheet.png"
-dest_files=["res://.godot/imported/numbers-Sheet.png-4dce71e350413a9e2f60fc625e1c9789.ctex"]
+source_file="res://assets/ui/buttons/button-start3.png"
+dest_files=["res://.godot/imported/button-start3.png-968c94028c280ef15f2627b15725a84b.ctex"]
 
 [params]
 

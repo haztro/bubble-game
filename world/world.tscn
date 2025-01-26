@@ -1,48 +1,76 @@
-[gd_scene load_steps=9 format=3 uid="uid://culw1vdkufdxd"]
+[gd_scene load_steps=37 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
-[ext_resource type="PackedScene" uid="uid://cvrsny1i6lt7k" path="res://units/bubble_small.tscn" id="2_x5ge1"]
 [ext_resource type="Texture2D" uid="uid://cektagi7s32au" path="res://assets/environment/mountain3.png" id="3_i4clw"]
 [ext_resource type="Script" path="res://world/camera_2d.gd" id="3_s5lb3"]
 [ext_resource type="Texture2D" uid="uid://c6n3pfapjfxar" path="res://assets/environment/mountain2.png" id="4_a1vps"]
 [ext_resource type="Texture2D" uid="uid://ds0xm4ddld286" path="res://assets/environment/sky.png" id="4_s2aod"]
 [ext_resource type="Texture2D" uid="uid://blnoq1hry8eod" path="res://assets/environment/mountain1.png" id="5_78stl"]
-[ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="8_iox6r"]
+[ext_resource type="Texture2D" uid="uid://517p5ns0a20q" path="res://assets/environment/foreground1.png" id="7_q1t7q"]
+[ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
+[ext_resource type="PackedScene" uid="uid://bvgiipc3atioa" path="res://world/bubblemaker.tscn" id="9_a5g8c"]
+[ext_resource type="Texture2D" uid="uid://fb1mu8t1aegd" path="res://assets/ui/buttons/buy/small/button-buy-small1.png" id="10_fflqi"]
+[ext_resource type="PackedScene" uid="uid://405r4p1wjn86" path="res://levels/level_1.tscn" id="10_u8s8h"]
+[ext_resource type="Texture2D" uid="uid://cleeuywte5t3h" path="res://assets/ui/buttons/buy/small/button-buy-small2.png" id="11_ao4lp"]
+[ext_resource type="Texture2D" uid="uid://d0dombx6pb2ih" path="res://assets/ui/buttons/buy/small/button-buy-small4.png" id="12_p36so"]
+[ext_resource type="Texture2D" uid="uid://dll5uuan582x2" path="res://assets/ui/buttons/buy/small/button-buy-small3.png" id="13_ut74e"]
+[ext_resource type="Texture2D" uid="uid://osv6ptj0rx7k" path="res://assets/ui/buttons/buy/small/button-buy-small5.png" id="14_jx7sy"]
+[ext_resource type="Texture2D" uid="uid://bf25ecgm3cown" path="res://assets/ui/buttons/buy/medium/button-buy-medium1.png" id="15_27llt"]
+[ext_resource type="Texture2D" uid="uid://dgafbl86yq0nm" path="res://assets/ui/buttons/buy/medium/button-buy-medium2.png" id="16_pbyd6"]
+[ext_resource type="Texture2D" uid="uid://be6cwibn2n8f" path="res://assets/ui/buttons/buy/medium/button-buy-medium4.png" id="17_jq2cl"]
+[ext_resource type="Texture2D" uid="uid://sbduyts7ee0v" path="res://assets/ui/buttons/buy/medium/button-buy-medium3.png" id="18_nlqf1"]
+[ext_resource type="Texture2D" uid="uid://cqkc4tv4sscyv" path="res://assets/ui/buttons/buy/medium/button-buy-medium5.png" id="19_vfqw2"]
+[ext_resource type="Texture2D" uid="uid://dwlw8xvx375jc" path="res://assets/ui/buttons/buy/big/button-buy-big1.png" id="20_1uf00"]
+[ext_resource type="Texture2D" uid="uid://b4w6w6qnqrpt6" path="res://assets/ui/buttons/buy/big/button-buy-big2.png" id="21_vh0sj"]
+[ext_resource type="Texture2D" uid="uid://chyiaamwddstx" path="res://assets/ui/buttons/buy/big/button-buy-big4.png" id="22_t26lk"]
+[ext_resource type="Texture2D" uid="uid://dyt1vkq2r76tg" path="res://assets/ui/buttons/buy/big/button-buy-big3.png" id="23_jb3os"]
+[ext_resource type="Texture2D" uid="uid://bwox6rc5e3633" path="res://assets/ui/buttons/buy/big/button-buy-big5.png" id="24_wypge"]
+[ext_resource type="Texture2D" uid="uid://btg3hffnba25w" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium1.png" id="25_bewy4"]
+[ext_resource type="Texture2D" uid="uid://bbf41ep665ka4" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium2.png" id="26_oo75v"]
+[ext_resource type="Texture2D" uid="uid://dsydfkotpucq3" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium4.png" id="27_7lu5g"]
+[ext_resource type="Texture2D" uid="uid://dy8brsd041f73" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium3.png" id="28_kd0rt"]
+[ext_resource type="Texture2D" uid="uid://bs8iyvmph2hry" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium5.png" id="29_0nj4f"]
 
-[node name="world" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vbjp"]
+bg_color = Color(0.0431373, 0, 0.160784, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5o6ve"]
+frames = 2
+frame_0/texture = ExtResource("10_fflqi")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("11_ao4lp")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_crxp4"]
+frames = 2
+frame_0/texture = ExtResource("15_27llt")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("16_pbyd6")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_bxmv3"]
+frames = 2
+frame_0/texture = ExtResource("20_1uf00")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("21_vh0sj")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ayi2o"]
+frames = 2
+frame_0/texture = ExtResource("25_bewy4")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("26_oo75v")
+frame_1/duration = 0.5
+
+[node name="world" type="Node2D" groups=["world"]]
 y_sort_enabled = true
 script = ExtResource("1_k30sl")
 
-[node name="bubble5" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-131, -26)
-is_enemy = true
-
-[node name="bubble6" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-130, -6)
-is_enemy = true
-
-[node name="bubble7" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-131, 14)
-is_enemy = true
-
-[node name="bubble8" parent="." groups=["enemy"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-130, 34)
-is_enemy = true
-
-[node name="bubble" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-236, -28)
-
-[node name="bubble2" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-236, -6)
-
-[node name="bubble3" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-236, 14)
-
-[node name="bubble4" parent="." groups=["human"] instance=ExtResource("2_x5ge1")]
-position = Vector2(-236, 36)
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-192, 0)
+position = Vector2(0, 108)
 script = ExtResource("3_s5lb3")
 
 [node name="ParallaxBG" type="Node2D" parent="."]
@@ -70,6 +98,7 @@ offset = Vector2(256, 0)
 [node name="Mountain3" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
 [node name="Mountain3_1" type="Sprite2D" parent="ParallaxBG/Mountain3"]
 texture_filter = 1
@@ -88,6 +117,7 @@ offset = Vector2(256, 0)
 [node name="Mountain2" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
 [node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/Mountain2"]
 texture_filter = 1
@@ -103,61 +133,167 @@ texture_filter = 1
 texture = ExtResource("4_a1vps")
 offset = Vector2(256, 0)
 
-[node name="Mountain1" type="Parallax2D" parent="ParallaxBG"]
+[node name="Mountain4" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.4, 0)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(2, 0)
 
-[node name="Mountain1_1" type="Sprite2D" parent="ParallaxBG/Mountain1"]
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/Mountain4"]
 texture_filter = 1
 texture = ExtResource("5_78stl")
 offset = Vector2(-256, 0)
 
-[node name="Mountain1_2" type="Sprite2D" parent="ParallaxBG/Mountain1"]
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/Mountain4"]
 texture_filter = 1
 texture = ExtResource("5_78stl")
 
-[node name="Mountain1_3" type="Sprite2D" parent="ParallaxBG/Mountain1"]
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/Mountain4"]
 texture_filter = 1
 texture = ExtResource("5_78stl")
 offset = Vector2(256, 0)
 
-[node name="ParallaxFG" type="Node2D" parent="."]
-z_index = 10
-position = Vector2(128, 128)
-
-[node name="FG1" type="Parallax2D" parent="ParallaxFG"]
+[node name="foreground" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(0, 20)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
 
-[node name="FG_1" type="Sprite2D" parent="ParallaxFG/FG1"]
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/foreground"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 offset = Vector2(-256, 0)
 
-[node name="FG_2" type="Sprite2D" parent="ParallaxFG/FG1"]
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/foreground"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 
-[node name="FG_3" type="Sprite2D" parent="ParallaxFG/FG1"]
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/foreground"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 offset = Vector2(256, 0)
 
-[node name="FG2" type="Parallax2D" parent="ParallaxFG"]
+[node name="foreground2" type="Parallax2D" parent="ParallaxBG"]
 scroll_scale = Vector2(0.6, 0)
-scroll_offset = Vector2(20, 20)
+scroll_offset = Vector2(0, 40)
 repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-2, 0)
 
-[node name="FG_1" type="Sprite2D" parent="ParallaxFG/FG2"]
+[node name="Mountain2_1" type="Sprite2D" parent="ParallaxBG/foreground2"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 offset = Vector2(-256, 0)
 
-[node name="FG_2" type="Sprite2D" parent="ParallaxFG/FG2"]
+[node name="Mountain2_2" type="Sprite2D" parent="ParallaxBG/foreground2"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 
-[node name="FG_3" type="Sprite2D" parent="ParallaxFG/FG2"]
+[node name="Mountain2_3" type="Sprite2D" parent="ParallaxBG/foreground2"]
 texture_filter = 1
-texture = ExtResource("8_iox6r")
+texture = ExtResource("7_q1t7q")
 offset = Vector2(256, 0)
+
+[node name="barracks" parent="." instance=ExtResource("8_cm61e")]
+z_index = 2
+position = Vector2(-98, 163)
+
+[node name="bubblemaker" parent="." instance=ExtResource("9_a5g8c")]
+z_index = 2
+position = Vector2(-115, 90)
+
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_w5eqq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8vbjp")
+value = 100.0
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_small" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_5o6ve")
+texture_pressed = ExtResource("12_p36so")
+texture_hover = ExtResource("13_ut74e")
+texture_disabled = ExtResource("14_jx7sy")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_med" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_crxp4")
+texture_pressed = ExtResource("17_jq2cl")
+texture_hover = ExtResource("18_nlqf1")
+texture_disabled = ExtResource("19_vfqw2")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_large" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_bxmv3")
+texture_pressed = ExtResource("22_t26lk")
+texture_hover = ExtResource("23_jb3os")
+texture_disabled = ExtResource("24_wypge")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_upgrade" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_ayi2o")
+texture_pressed = ExtResource("27_7lu5g")
+texture_hover = ExtResource("28_kd0rt")
+texture_disabled = ExtResource("29_0nj4f")
+
+[node name="Level1" parent="." instance=ExtResource("10_u8s8h")]
+position = Vector2(279, 125)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

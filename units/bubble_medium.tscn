@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cirm8f55t1yoy"]
+
+[ext_resource type="PackedScene" uid="uid://568kua6fped3" path="res://units/bubble.tscn" id="1_nw35p"]
+[ext_resource type="Texture2D" uid="uid://chmt4xdbeo0pk" path="res://assets/characters/bubble-medium-Sheet.png" id="2_wxdy8"]
+
+[node name="bubble_medium" instance=ExtResource("1_nw35p")]
+bubble_size = "medium"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -6)
+texture = ExtResource("2_wxdy8")

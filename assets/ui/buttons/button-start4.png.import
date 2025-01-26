@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lv4vn2l50727"
-path="res://.godot/imported/bubble-enemy-big-Sheet.png-79a7640d2bf1165992c60c54dfea20a3.ctex"
+uid="uid://ctmgs41amtpvq"
+path="res://.godot/imported/button-start4.png-327169d4772a7594b067e740473a993d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/bubble-enemy-big-Sheet.png"
-dest_files=["res://.godot/imported/bubble-enemy-big-Sheet.png-79a7640d2bf1165992c60c54dfea20a3.ctex"]
+source_file="res://assets/ui/buttons/button-start4.png"
+dest_files=["res://.godot/imported/button-start4.png-327169d4772a7594b067e740473a993d.ctex"]
 
 [params]
 

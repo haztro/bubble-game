@@ -1,7 +1,12 @@
-[gd_scene format=3 uid="uid://i8dqe0gcqc5d"]
+[gd_scene load_steps=2 format=3 uid="uid://i8dqe0gcqc5d"]
+
+[ext_resource type="PackedScene" uid="uid://culw1vdkufdxd" path="res://world/world.tscn" id="1_onhv0"]
 
 [node name="main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(384, 216)
+
+[node name="world" parent="SubViewport" instance=ExtResource("1_onhv0")]

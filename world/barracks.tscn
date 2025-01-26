@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://box2tp0g7gmji"]
+
+[ext_resource type="PackedScene" uid="uid://6338teuh86v8" path="res://world/building.tscn" id="1_egryu"]
+[ext_resource type="Script" path="res://world/barracks.gd" id="2_gf3c3"]
+
+[sub_resource type="Animation" id="Animation_e4hx1"]
+resource_name = "spawn"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9, 10, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_bubble"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l7vo4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m445m"]
+resource_name = "idle"
+length = 0.7
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvxs3"]
+_data = {
+"RESET": SubResource("Animation_l7vo4"),
+"idle": SubResource("Animation_m445m"),
+"spawn": SubResource("Animation_e4hx1")
+}
+
+[node name="barracks" instance=ExtResource("1_egryu")]
+script = ExtResource("2_gf3c3")
+init_position = Vector2(-98, 163)
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+hframes = 4
+vframes = 3
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_yvxs3")
+}
