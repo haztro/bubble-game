@@ -39,8 +39,8 @@
 [ext_resource type="Texture2D" uid="uid://cta1o24brb18w" path="res://assets/ui/resource/resource-tab.png" id="30_x7mik"]
 [ext_resource type="FontFile" uid="uid://cpn6mik1fef17" path="res://assets/fonts/3-by-5-pixel-font.ttf" id="31_behwo"]
 [ext_resource type="AudioStream" uid="uid://ciirwke4b6n6g" path="res://assets/audio/button/click.mp3" id="39_c1qpx"]
-[ext_resource type="AudioStream" uid="uid://1sdi52c23c5b" path="res://assets/audio/music/main_menu.wav" id="40_e1rdm"]
-[ext_resource type="AudioStream" uid="uid://c1kfy776o7u0o" path="res://assets/audio/music/army_screen.wav" id="41_blrb0"]
+[ext_resource type="AudioStream" uid="uid://dmcfj75tpuavb" path="res://assets/audio/music/main_menu.ogg" id="40_f01d7"]
+[ext_resource type="AudioStream" uid="uid://da8i1bj5t0e6q" path="res://assets/audio/music/army_screen.ogg" id="41_lxmhc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryjhi"]
 size = Vector2(401, 20)
@@ -324,13 +324,11 @@ wait_time = 0.2
 stream = ExtResource("39_c1qpx")
 
 [node name="menu_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("40_e1rdm")
+stream = ExtResource("40_f01d7")
 
 [node name="base_screen" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("41_blrb0")
+stream = ExtResource("41_lxmhc")
 volume_db = -80.0
-
-[node name="battle_music" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="finished" from="TitleScreen" to="." method="_on_title_screen_finished"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

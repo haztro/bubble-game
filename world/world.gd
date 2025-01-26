@@ -85,7 +85,10 @@ func check_win():
 	
 	if num_human <= 0:
 		$Timer.stop()
-		get_tree().create_timer(4)
+		Game.bubble_bux	= 30
+		Game.UPGRADE_SPEED_COST = 20
+		Game.UPGRADE_WORTH_COST = 20
+		await get_tree().create_timer(3)
 		get_tree().reload_current_scene()
 	elif num_enemy <= 0:
 		win_animation()
@@ -102,11 +105,9 @@ func win_animation():
 	
 	$base_screen.play()
 	tween.tween_property($base_screen, "volume_db", 0, 2)
-	tween.tween_property($battle_music, "volume_db", -80, 2)
 	
 	await get_tree().create_timer(Game.CAMERA_BUILDING_DELAY)
-	$battle_music.stop()
-	
+
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property($Camera2D, "position", Vector2($Camera2D.position.x+384/2, $Camera2D.position.y), Game.CAM_TO_BASE_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	tween2.tween_callback(start_base)
@@ -138,13 +139,11 @@ func _on_round_timer_timeout() -> void:
 	tween.set_parallel()
 	tween.tween_property(buttons, "position", Vector2(-384/2, buttons.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
-	$battle_music.play()
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property($base_screen, "volume_db", -80, 2)
-	tween2.tween_property($battle_music, "volume_db", 0, 2)
 	await tween.finished
 	
-	$base_music.stop()
+	$base_screen.stop()
 	
 	Game.mode = "battle"
 	$Timer.start()
@@ -216,14 +215,15 @@ func _on_buy_large_pressed() -> void:
 
 
 func _on_title_screen_finished() -> void:
+	$bubblemaker.get_node("Timer").start()
+	
 	round_timer.start()	
 	$CanvasLayer/Control.visible = true
 	menu = false
 	$base_screen.play()
-	
 	var tween = get_tree().create_tween()
-	tween.tween_property($menu_music, "volume_db", -80, 4)
-	tween.tween_property($base_screen, "volume_db", 0, 4)
+	tween.tween_property($menu_music, "volume_db", -80, 2)
+	tween.tween_property($base_screen, "volume_db", 0, 0.3)
 	await tween.finished
 	$menu_music.stop() 
 

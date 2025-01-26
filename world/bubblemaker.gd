@@ -10,9 +10,6 @@ func _ready() -> void:
 	super._ready()
 	anim_player.seek(0.4)
 	tier = 1
-	
-	if tier > 0:
-		$Timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

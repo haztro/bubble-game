@@ -34,7 +34,8 @@ func _ready() -> void:
 			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
 		elif bubble_size == 'large':
 			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-big-Sheet.png")
-		#modulate = Color.RED
+		if split:
+			_fsm.set_state("StateSearch")
 	else:
 		add_to_group("human")
 		$Timer.wait_time = randf_range(0.5, 2)
