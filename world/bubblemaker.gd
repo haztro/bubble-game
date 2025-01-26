@@ -26,7 +26,7 @@ func _on_timer_timeout() -> void:
 	
 	
 func spawn_bubble():
-	if Game.mode == "base":
+	if Game.mode == "base" and not get_parent().menu:
 		$AudioStreamPlayer2D.play()
 	var mb = money_bubble_scene.instantiate()
 	mb.position.y -= 10

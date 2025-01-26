@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
 
 var run_speed = 80
-var health = 1.0
+@export var health = 1.0
 
 #var velocity: Vector2 = Vector2.ZERO
 var target = null

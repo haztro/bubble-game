@@ -20,6 +20,8 @@ const BARRACKS_TIER2_COST: float = 100
 const MAX_SPEED: int = 10
 const MAX_WORTH: int = 5
 
+const MAX_LEVELS: int = 8
+
 var UPGRADE_SPEED_COST: float = 50
 var UPGRADE_WORTH_COST: float = 50
 
@@ -32,7 +34,7 @@ const LARGE_COST: float = 100
 var bubbles = {}
 var bubble_id: int = 0
 
-var bubble_bux = 10000
+var bubble_bux = 30
 
 
 var mode: String = "base"

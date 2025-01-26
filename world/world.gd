@@ -22,14 +22,29 @@ var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
 var bubble_large_scene = preload("res://units/bubble_large.tscn")
 
 var level1_scene = preload("res://levels/level_1.tscn")
+var level2_scene = preload("res://levels/level_2.tscn")
+var level3_scene = preload("res://levels/level_3.tscn")
+var level4_scene = preload("res://levels/level_4.tscn")
+var level5_scene = preload("res://levels/level_5.tscn")
+var level6_scene = preload("res://levels/level_6.tscn")
+var level7_scene = preload("res://levels/level_7.tscn")
+var level8_scene = preload("res://levels/level_8.tscn")
 
+
+var all_levels = [level1_scene, 
+				level2_scene, 
+				level3_scene, 
+				level4_scene, 
+				level5_scene, 
+				level6_scene, 
+				level7_scene,
+				level8_scene]
+
+var menu = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#var tween = get_tree().create_tween()
-	#tween.tween_property($Camera2D, "position", Vector2(0, 108), 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	
 	round_timer.start()	
 	
 	for bubble in get_tree().get_nodes_in_group("bubble"):
@@ -96,10 +111,13 @@ func start_base():
 	tween.tween_property(buttons, "position", Vector2(0, buttons.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
 	Game.level += 1
+	if Game.level >= Game.MAX_LEVELS:
+		Game.level = 1
+		
 	Game.mode = "base"
 	$RoundTimer.start()
 	progress_bar.modulate.a = 1
-	var lvl = level1_scene.instantiate()
+	var lvl = all_levels[Game.level-1].instantiate()
 	lvl.position = Vector2(Game.level * 384 - 384/4, 125)
 	add_child(lvl)
 	for enemy in get_tree().get_nodes_in_group("enemy"):
@@ -183,6 +201,7 @@ func _on_buy_large_pressed() -> void:
 
 func _on_title_screen_finished() -> void:
 	$CanvasLayer/Control.visible = true
+	menu = false
 
 
 func _on_speed_upgrade_pressed() -> void:

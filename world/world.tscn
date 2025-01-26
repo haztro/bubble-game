@@ -1,8 +1,8 @@
 [gd_scene load_steps=49 format=3 uid="uid://culw1vdkufdxd"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_k30sl"]
-[ext_resource type="PackedScene" path="res://world/parallax_bg.tscn" id="2_pyxql"]
-[ext_resource type="PackedScene" path="res://world/title_screen.tscn" id="5_6p5ev"]
+[ext_resource type="PackedScene" uid="uid://qlfymm5u3u08" path="res://world/parallax_bg.tscn" id="2_pyxql"]
+[ext_resource type="PackedScene" uid="uid://clug72fd61e6v" path="res://world/title_screen.tscn" id="5_6p5ev"]
 [ext_resource type="Texture2D" uid="uid://bhth5pi6uepgw" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed1.png" id="6_f2s57"]
 [ext_resource type="Texture2D" uid="uid://cdhqshhlibylr" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed2.png" id="7_t6r0d"]
 [ext_resource type="PackedScene" uid="uid://box2tp0g7gmji" path="res://world/barracks.tscn" id="8_cm61e"]
@@ -130,7 +130,7 @@ position = Vector2(-85, 90)
 init_position = Vector2(-85, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 45.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -229,6 +229,13 @@ texture_pressed = ExtResource("12_p36so")
 texture_hover = ExtResource("13_ut74e")
 texture_disabled = ExtResource("14_jx7sy")
 
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "-10"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -241,6 +248,13 @@ texture_pressed = ExtResource("17_jq2cl")
 texture_hover = ExtResource("18_nlqf1")
 texture_disabled = ExtResource("19_vfqw2")
 
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "-30"
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -252,6 +266,13 @@ texture_normal = SubResource("AnimatedTexture_bxmv3")
 texture_pressed = ExtResource("22_t26lk")
 texture_hover = ExtResource("23_jb3os")
 texture_disabled = ExtResource("24_wypge")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("31_behwo")
+theme_override_font_sizes/font_size = 8
+text = "-100"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
