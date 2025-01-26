@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhmolarmgpbks"]
+[gd_scene load_steps=4 format=3 uid="uid://c8cmkfx0ta2ts"]
 
 [ext_resource type="PackedScene" uid="uid://bt8yhc2xe1xer" path="res://levels/level.tscn" id="1_nckeg"]
 [ext_resource type="PackedScene" uid="uid://cvrsny1i6lt7k" path="res://units/bubble_small.tscn" id="2_3vw4f"]
 [ext_resource type="PackedScene" uid="uid://cirm8f55t1yoy" path="res://units/bubble_medium.tscn" id="3_u1r1n"]
 
-[node name="Level1" instance=ExtResource("1_nckeg")]
+[node name="Level2" instance=ExtResource("1_nckeg")]
 position = Vector2(1, 13)
 
 [node name="bubble" parent="." index="0" instance=ExtResource("2_3vw4f")]

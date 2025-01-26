@@ -1,21 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkl122k5tx83b"]
+[gd_scene load_steps=3 format=3 uid="uid://dkl122k5tx83b"]
 
 [ext_resource type="PackedScene" uid="uid://bt8yhc2xe1xer" path="res://levels/level.tscn" id="1_epms0"]
-[ext_resource type="PackedScene" uid="uid://cvrsny1i6lt7k" path="res://units/bubble_small.tscn" id="2_1giqh"]
-[ext_resource type="PackedScene" uid="uid://cirm8f55t1yoy" path="res://units/bubble_medium.tscn" id="3_iwuwi"]
 [ext_resource type="PackedScene" uid="uid://cf7ldb8ee2b6m" path="res://units/bubble_large.tscn" id="4_w5c7a"]
 
 [node name="Level1" instance=ExtResource("1_epms0")]
 position = Vector2(2, 27)
 
-[node name="bubble2" parent="." index="0" instance=ExtResource("2_1giqh")]
-position = Vector2(-1, -20)
-is_enemy = true
-
-[node name="bubble_medium2" parent="." index="1" instance=ExtResource("3_iwuwi")]
-position = Vector2(30, -37)
-is_enemy = true
-
-[node name="bubble_large" parent="." index="2" instance=ExtResource("4_w5c7a")]
-position = Vector2(35, 2)
+[node name="bubble_large" parent="." index="0" instance=ExtResource("4_w5c7a")]
+position = Vector2(11, -16)
 is_enemy = true
