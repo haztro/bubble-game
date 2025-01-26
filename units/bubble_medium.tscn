@@ -5,6 +5,7 @@
 
 [node name="bubble_medium" instance=ExtResource("1_nw35p")]
 bubble_size = "medium"
+health = 2.0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -6)

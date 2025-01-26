@@ -20,6 +20,8 @@ const BARRACKS_TIER2_COST: float = 100
 const MAX_SPEED: int = 10
 const MAX_WORTH: int = 5
 
+const MAX_LEVELS: int = 8
+
 var UPGRADE_SPEED_COST: float = 50
 var UPGRADE_WORTH_COST: float = 50
 
