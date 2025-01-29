@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cirm8f55t1yoy"]
+[gd_scene load_steps=5 format=3 uid="uid://cirm8f55t1yoy"]
 
 [ext_resource type="PackedScene" uid="uid://568kua6fped3" path="res://units/bubble.tscn" id="1_nw35p"]
+[ext_resource type="Script" path="res://units/unit_data.gd" id="2_kkjto"]
 [ext_resource type="Texture2D" uid="uid://chmt4xdbeo0pk" path="res://assets/characters/bubble-medium-Sheet.png" id="2_wxdy8"]
 
+[sub_resource type="Resource" id="Resource_i07ye"]
+resource_local_to_scene = true
+script = ExtResource("2_kkjto")
+position = Vector2(0, 0)
+unit_type = 1
+
 [node name="bubble_medium" instance=ExtResource("1_nw35p")]
-bubble_size = "medium"
+data = SubResource("Resource_i07ye")
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -6)

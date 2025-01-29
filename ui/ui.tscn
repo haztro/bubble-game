@@ -1,0 +1,273 @@
+[gd_scene load_steps=43 format=3 uid="uid://optb76h45r6p"]
+
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_1uyl0"]
+[ext_resource type="Texture2D" uid="uid://bhth5pi6uepgw" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed1.png" id="1_d7q6w"]
+[ext_resource type="Texture2D" uid="uid://cdhqshhlibylr" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed2.png" id="2_vjgfc"]
+[ext_resource type="Texture2D" uid="uid://d3un64q1rn4ue" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed4.png" id="3_ppqyu"]
+[ext_resource type="Texture2D" uid="uid://3mn7a24huy84" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed3.png" id="4_8ooui"]
+[ext_resource type="Texture2D" uid="uid://mp2qvg1u5mre" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-speed5.png" id="5_5ip85"]
+[ext_resource type="FontFile" uid="uid://cpn6mik1fef17" path="res://assets/fonts/3-by-5-pixel-font.ttf" id="6_7cu6m"]
+[ext_resource type="Texture2D" uid="uid://fqrmmsrq41oe" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-value1.png" id="7_1ve2n"]
+[ext_resource type="Texture2D" uid="uid://dmqs1ivuk5t1i" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-value2.png" id="8_3aedm"]
+[ext_resource type="Texture2D" uid="uid://c5mcxt58i8g1r" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-value4.png" id="9_24u1p"]
+[ext_resource type="Texture2D" uid="uid://3qodg2tk1alv" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-value3.png" id="10_6u8d3"]
+[ext_resource type="Texture2D" uid="uid://bl6hrquhtf6ys" path="res://assets/ui/buttons/upgrade_resource/button-upgrade-value5.png" id="11_0lu44"]
+[ext_resource type="Texture2D" uid="uid://fb1mu8t1aegd" path="res://assets/ui/buttons/buy/small/button-buy-small1.png" id="12_dbmqq"]
+[ext_resource type="Texture2D" uid="uid://cleeuywte5t3h" path="res://assets/ui/buttons/buy/small/button-buy-small2.png" id="13_im6le"]
+[ext_resource type="Texture2D" uid="uid://d0dombx6pb2ih" path="res://assets/ui/buttons/buy/small/button-buy-small4.png" id="14_32pc3"]
+[ext_resource type="Texture2D" uid="uid://dll5uuan582x2" path="res://assets/ui/buttons/buy/small/button-buy-small3.png" id="15_cjj57"]
+[ext_resource type="Texture2D" uid="uid://osv6ptj0rx7k" path="res://assets/ui/buttons/buy/small/button-buy-small5.png" id="16_otnsh"]
+[ext_resource type="Texture2D" uid="uid://bf25ecgm3cown" path="res://assets/ui/buttons/buy/medium/button-buy-medium1.png" id="17_ebo3x"]
+[ext_resource type="Texture2D" uid="uid://dgafbl86yq0nm" path="res://assets/ui/buttons/buy/medium/button-buy-medium2.png" id="18_rtxjf"]
+[ext_resource type="Texture2D" uid="uid://be6cwibn2n8f" path="res://assets/ui/buttons/buy/medium/button-buy-medium4.png" id="19_dpatb"]
+[ext_resource type="Texture2D" uid="uid://sbduyts7ee0v" path="res://assets/ui/buttons/buy/medium/button-buy-medium3.png" id="20_aebnt"]
+[ext_resource type="Texture2D" uid="uid://cqkc4tv4sscyv" path="res://assets/ui/buttons/buy/medium/button-buy-medium5.png" id="21_leomp"]
+[ext_resource type="Texture2D" uid="uid://dwlw8xvx375jc" path="res://assets/ui/buttons/buy/big/button-buy-big1.png" id="22_vnys3"]
+[ext_resource type="Texture2D" uid="uid://b4w6w6qnqrpt6" path="res://assets/ui/buttons/buy/big/button-buy-big2.png" id="23_dj2kk"]
+[ext_resource type="Texture2D" uid="uid://chyiaamwddstx" path="res://assets/ui/buttons/buy/big/button-buy-big4.png" id="24_mynve"]
+[ext_resource type="Texture2D" uid="uid://dyt1vkq2r76tg" path="res://assets/ui/buttons/buy/big/button-buy-big3.png" id="25_06j22"]
+[ext_resource type="Texture2D" uid="uid://bwox6rc5e3633" path="res://assets/ui/buttons/buy/big/button-buy-big5.png" id="26_3kioh"]
+[ext_resource type="Texture2D" uid="uid://btg3hffnba25w" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium1.png" id="27_2rxwf"]
+[ext_resource type="Texture2D" uid="uid://bbf41ep665ka4" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium2.png" id="28_kecnq"]
+[ext_resource type="Texture2D" uid="uid://dsydfkotpucq3" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium4.png" id="29_qeng8"]
+[ext_resource type="Texture2D" uid="uid://dy8brsd041f73" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium3.png" id="30_1ccg8"]
+[ext_resource type="Texture2D" uid="uid://bs8iyvmph2hry" path="res://assets/ui/buttons/upgrade_barracks/button-upgrade-medium5.png" id="31_42wjb"]
+[ext_resource type="Texture2D" uid="uid://cta1o24brb18w" path="res://assets/ui/resource/resource-tab.png" id="32_twatb"]
+[ext_resource type="AudioStream" uid="uid://ciirwke4b6n6g" path="res://assets/audio/button/click.mp3" id="34_fqjta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5eqq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vbjp"]
+bg_color = Color(0.0431373, 0, 0.160784, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_244kd"]
+frames = 2
+frame_0/texture = ExtResource("1_d7q6w")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("2_vjgfc")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qyrsp"]
+frames = 2
+frame_0/texture = ExtResource("7_1ve2n")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("8_3aedm")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5o6ve"]
+frames = 2
+frame_0/texture = ExtResource("12_dbmqq")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("13_im6le")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_crxp4"]
+frames = 2
+frame_0/texture = ExtResource("17_ebo3x")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("18_rtxjf")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_bxmv3"]
+frames = 2
+frame_0/texture = ExtResource("22_vnys3")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("23_dj2kk")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ayi2o"]
+frames = 2
+frame_0/texture = ExtResource("27_2rxwf")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("28_kecnq")
+frame_1/duration = 0.5
+
+[node name="ui" type="Control" groups=["ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1uyl0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_w5eqq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8vbjp")
+value = 100.0
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="speed_upgrade" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_244kd")
+texture_pressed = ExtResource("3_ppqyu")
+texture_hover = ExtResource("4_8ooui")
+texture_disabled = ExtResource("5_5ip85")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-20"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="value_upgrade" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer6"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_qyrsp")
+texture_pressed = ExtResource("9_24u1p")
+texture_hover = ExtResource("10_6u8d3")
+texture_disabled = ExtResource("11_0lu44")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer6"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-20"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_small" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_5o6ve")
+texture_pressed = ExtResource("14_32pc3")
+texture_hover = ExtResource("15_cjj57")
+texture_disabled = ExtResource("16_otnsh")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-10"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="buy_med" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_crxp4")
+texture_pressed = ExtResource("19_dpatb")
+texture_hover = ExtResource("20_aebnt")
+texture_disabled = ExtResource("21_leomp")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-30"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="buy_large" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_bxmv3")
+texture_pressed = ExtResource("24_mynve")
+texture_hover = ExtResource("25_06j22")
+texture_disabled = ExtResource("26_3kioh")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-100"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="buy_upgrade" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AnimatedTexture_ayi2o")
+texture_pressed = ExtResource("29_qeng8")
+texture_hover = ExtResource("30_1ccg8")
+texture_disabled = ExtResource("31_42wjb")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "-50
+"
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+disabled = true
+texture_normal = ExtResource("32_twatb")
+texture_disabled = ExtResource("32_twatb")
+
+[node name="Label" type="Label" parent="MarginContainer/TextureButton"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 57.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.0431373, 0, 0.160784, 1)
+theme_override_fonts/font = ExtResource("6_7cu6m")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="btn_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_fqjta")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer5/speed_upgrade" to="." method="_on_speed_upgrade_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer6/value_upgrade" to="." method="_on_value_upgrade_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/buy_small" to="." method="_on_buy_small_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/buy_med" to="." method="_on_buy_med_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer3/buy_large" to="." method="_on_buy_large_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4/buy_upgrade" to="." method="_on_buy_upgrade_pressed"]

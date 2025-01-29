@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export var speed: float = 50.0
 @export var damage: float = 1
-@export_enum('small', 'medium', 'large') var bubble_size = 'small'
 @export var is_enemy: bool = false
 
 @onready var _sprite = get_node("Sprite2D")
@@ -12,8 +11,10 @@ extends CharacterBody2D
 @onready var anim_player = get_node("AnimationPlayer")
 @onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
 
-var run_speed = 80
+var run_speed = 150
 @export var health = 1.0
+
+@export var data: UnitData = UnitData.new()
 
 #var velocity: Vector2 = Vector2.ZERO
 var target = null
@@ -28,12 +29,13 @@ var split = false
 func _ready() -> void:
 	if is_enemy:
 		add_to_group("enemy")
-		if bubble_size == 'small':
-			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-small-Sheet.png")
-		elif bubble_size == 'medium':
-			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
-		elif bubble_size == 'large':
-			_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-big-Sheet.png")
+		match data.unit_type:
+			Game.UNIT_TYPE.SMALL:
+				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-small-Sheet.png")
+			Game.UNIT_TYPE.MEDIUM:
+				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
+			Game.UNIT_TYPE.LARGE:
+				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-big-Sheet.png")
 		if split:
 			_fsm.set_state("StateSearch")
 	else:
@@ -54,8 +56,8 @@ func _process(delta: float) -> void:
 	
 
 func run_to_next():
-	if Game.mode == "battle":
-		destination = Vector2(randi_range(0, 100), randi_range(75, 190)) + Vector2(384 * Game.level, 0)
+	if Game.game_state == Game.GAME_STATE.FIGHT:
+		destination = Vector2(randi_range(192, 384), randi_range(75, 190)) + Vector2(384, 0)
 	_fsm.set_state("StateRun")	
 	
 	
@@ -68,7 +70,7 @@ func spawn_self():
 	anim_player.play("spawn")
 	await anim_player.animation_finished
 	_fsm.set_process_mode(Node.PROCESS_MODE_INHERIT)
-	if Game.mode == "battle":
+	if Game.game_state == Game.GAME_STATE.FIGHT:
 		_fsm.set_state("Search")
 	else:
 		_fsm.set_state("StateIdle")
@@ -104,6 +106,7 @@ func _physics_process(delta):
 			
 	#navigation_agent.set_velocity(velocity)
 	move_and_slide()
+	data.position = position
 	
 	
 func set_sword_direction():
@@ -125,13 +128,13 @@ func die():
 	$AudioStreamPlayer2D.set_pitch_scale(randf_range(0.85, 1.15))
 	$AudioStreamPlayer2D.play()
 
-	match bubble_size:
-		'small':
+	match data.unit_type:
+		Game.UNIT_TYPE.SMALL:
 			pass
-		'medium':
+		Game.UNIT_TYPE.MEDIUM:
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset1 , "small", is_in_group("enemy"))
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "small", is_in_group("enemy"))
-		'large':
+		Game.UNIT_TYPE.LARGE:
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset1, "medium", is_in_group("enemy"))
 			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "medium", is_in_group("enemy"))
 		

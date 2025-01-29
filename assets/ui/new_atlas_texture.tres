@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d0wfo8gthppdf"]
+
+[ext_resource type="Texture2D" uid="uid://dw8x83pdv6x6" path="res://assets/ui/game-logo-Sheet.png" id="1_mufli"]
+
+[resource]
+atlas = ExtResource("1_mufli")
+region = Rect2(128, 0, 128, 64)

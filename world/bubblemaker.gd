@@ -1,6 +1,7 @@
 class_name BubbleMaker
 extends "res://world/building.gd"
 
+@onready var _suck_sound = get_node("suck_sound")
 
 var money_bubble_scene = preload("res://world/money_bubble.tscn")
 var worth = 1
@@ -23,14 +24,13 @@ func _on_timer_timeout() -> void:
 	
 	
 func spawn_bubble():
-	if Game.mode == "base" and not get_parent().menu:
-		$AudioStreamPlayer2D.play()
+	if Game.game_state == Game.GAME_STATE.BASE and Game.game_state == Game.GAME_STATE.BASE:
+		_suck_sound.play()
 	var mb = money_bubble_scene.instantiate()
 	mb.position.y -= 10
 	mb.worth = worth_function()
 	mb.set_worth_card(mb.worth)
 	add_child(mb)
-	
 	
 	
 func speed_function():

@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddgurjgejpcvk"]
+[gd_scene load_steps=6 format=3 uid="uid://ddgurjgejpcvk"]
 
 [ext_resource type="PackedScene" uid="uid://bt8yhc2xe1xer" path="res://levels/level.tscn" id="1_e2gmw"]
+[ext_resource type="Script" path="res://units/unit_data.gd" id="3_v68q3"]
 [ext_resource type="PackedScene" uid="uid://cf7ldb8ee2b6m" path="res://units/bubble_large.tscn" id="4_08vsu"]
+
+[sub_resource type="Resource" id="Resource_no3gx"]
+resource_local_to_scene = true
+script = ExtResource("3_v68q3")
+position = Vector2(0, 0)
+unit_type = 2
+
+[sub_resource type="Resource" id="Resource_dy0gw"]
+resource_local_to_scene = true
+script = ExtResource("3_v68q3")
+position = Vector2(0, 0)
+unit_type = 2
 
 [node name="Level1" instance=ExtResource("1_e2gmw")]
 position = Vector2(2, 27)
@@ -9,7 +22,9 @@ position = Vector2(2, 27)
 [node name="bubble_large" parent="." index="0" instance=ExtResource("4_08vsu")]
 position = Vector2(35, 2)
 is_enemy = true
+data = SubResource("Resource_no3gx")
 
 [node name="bubble_large2" parent="." index="1" instance=ExtResource("4_08vsu")]
 position = Vector2(-5, -26)
 is_enemy = true
+data = SubResource("Resource_dy0gw")

@@ -1,12 +1,16 @@
 class_name Barracks
 extends "res://world/building.gd"
 
+
+@onready var _spawn_sound = get_node("spawn_sound")
+
 var bubble_small_scene = preload("res://units/bubble_small.tscn")
 var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
 var bubble_large_scene = preload("res://units/bubble_large.tscn")
 
 var float_speed: float = 50.0
-var current_bubble_size = "small"
+var spawning = false
+var current_unit_type = Game.UNIT_TYPE.SMALL
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,38 +24,36 @@ func _process(delta: float) -> void:
 		
 	
 	
-func add_bubble_node(bubble_size):
-	$AudioStreamPlayer2D.play()
+func add_bubble_node(unit_type) -> void:
+	_spawn_sound.play()
 	var bubble = null
-	if bubble_size == 'small':
-		bubble = bubble_small_scene.instantiate()
-		get_parent().buy_small.disabled = !(Game.bubble_bux >= Game.SMALL_COST)
-	elif bubble_size == 'medium':
-		bubble = bubble_medium_scene.instantiate()
-		get_parent().buy_med.disabled = !(Game.bubble_bux >= Game.MED_COST)
-	elif bubble_size == 'large':
-		bubble = bubble_large_scene.instantiate()
-		get_parent().buy_large.disabled = !(Game.bubble_bux >= Game.LARGE_COST)
+	match unit_type:
+		Game.UNIT_TYPE.SMALL:
+			bubble = bubble_small_scene.instantiate()
+		Game.UNIT_TYPE.MEDIUM:
+			bubble = bubble_medium_scene.instantiate()
+		Game.UNIT_TYPE.LARGE:
+			bubble = bubble_large_scene.instantiate()
 
 	bubble.position = position + Vector2(22, -22)
 	get_parent().connect("run_to_next", bubble.run_to_next)
 	get_parent().connect("start_battle", bubble.start_battle)
 	get_parent().add_child(bubble)
 	
-	var dest = Vector2(randi_range(0, 100), randi_range(75, 190)) + Vector2(1, 0) * 384 * (Game.level-1)
+	var dest = Vector2(randi_range(192, 384), randi_range(75, 190)) + Vector2(1, 0)
 	var tween = get_tree().create_tween()
 	tween.tween_property(bubble, "position", dest, bubble.position.distance_to(dest) / float_speed)
 	tween.tween_callback(bubble.spawn_self)
 	
-func new_bubble(bubble_size):
-	current_bubble_size = bubble_size
-	$AnimationPlayer.play("spawn")
+	spawning = false
+	get_tree().get_first_node_in_group("ui").set_buy_btns_disabled(false)
+	
+func new_bubble(unit_type) -> void:
+	spawning = true
+	current_unit_type = unit_type
+	anim_player.play("spawn")
 	
 	
-func spawn_bubble():
-	add_bubble_node(current_bubble_size)
-	pass
-
-
-func upgrade():
-	super.upgrade()
+# Called at end of "spawn" animation
+func spawn_bubble() -> void:
+	add_bubble_node(current_unit_type)

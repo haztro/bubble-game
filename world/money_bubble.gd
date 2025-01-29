@@ -24,7 +24,7 @@ func _on_pop_animation_finished() -> void:
 
 func _on_timer_timeout() -> void:
 	Game.bubble_bux += worth
-	get_tree().get_first_node_in_group("world").update_buttons()
+	get_tree().get_first_node_in_group("ui").on_money_change()
 	$pop.play()
 	$AudioStreamPlayer2D.set_pitch_scale(randf_range(0.85, 1.15))
 	$AudioStreamPlayer2D.play()

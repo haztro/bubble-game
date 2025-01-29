@@ -9,120 +9,90 @@
 
 [node name="ParallaxBG" type="Node2D"]
 z_index = -10
-position = Vector2(128, 128)
 script = ExtResource("1_snqki")
 
 [node name="Sky" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.05, 0)
-repeat_size = Vector2(768, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
 [node name="Sky_1" type="Sprite2D" parent="Sky"]
 texture_filter = 1
+texture_repeat = 2
 texture = ExtResource("1_r5fus")
-offset = Vector2(-256, 0)
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)
 
-[node name="Sky_2" type="Sprite2D" parent="Sky"]
-texture_filter = 1
-texture = ExtResource("1_r5fus")
-
-[node name="Sky_3" type="Sprite2D" parent="Sky"]
-texture_filter = 1
-texture = ExtResource("1_r5fus")
-offset = Vector2(256, 0)
-
-[node name="Mountain3" type="Parallax2D" parent="."]
+[node name="Mountain" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0)
-repeat_size = Vector2(768, 0)
-autoscroll = Vector2(2, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
-[node name="Mountain3_1" type="Sprite2D" parent="Mountain3"]
+[node name="Mountain3_1" type="Sprite2D" parent="Mountain"]
 texture_filter = 1
+texture_repeat = 2
 texture = ExtResource("2_501eh")
-offset = Vector2(-256, 0)
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)
 
-[node name="Mountain3_2" type="Sprite2D" parent="Mountain3"]
-texture_filter = 1
-texture = ExtResource("2_501eh")
+[node name="Mountain1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
-[node name="Mountain3_3" type="Sprite2D" parent="Mountain3"]
+[node name="Mountain2_1" type="Sprite2D" parent="Mountain1"]
 texture_filter = 1
-texture = ExtResource("2_501eh")
-offset = Vector2(256, 0)
+texture_repeat = 2
+texture = ExtResource("3_fqpim")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)
 
 [node name="Mountain2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 0)
-repeat_size = Vector2(768, 0)
-autoscroll = Vector2(2, 0)
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
 [node name="Mountain2_1" type="Sprite2D" parent="Mountain2"]
 texture_filter = 1
-texture = ExtResource("3_fqpim")
-offset = Vector2(-256, 0)
-
-[node name="Mountain2_2" type="Sprite2D" parent="Mountain2"]
-texture_filter = 1
-texture = ExtResource("3_fqpim")
-
-[node name="Mountain2_3" type="Sprite2D" parent="Mountain2"]
-texture_filter = 1
-texture = ExtResource("3_fqpim")
-offset = Vector2(256, 0)
-
-[node name="Mountain4" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.4, 0)
-repeat_size = Vector2(768, 0)
-autoscroll = Vector2(2, 0)
-
-[node name="Mountain2_1" type="Sprite2D" parent="Mountain4"]
-texture_filter = 1
+texture_repeat = 2
 texture = ExtResource("4_hgbjx")
-offset = Vector2(-256, 0)
-
-[node name="Mountain2_2" type="Sprite2D" parent="Mountain4"]
-texture_filter = 1
-texture = ExtResource("4_hgbjx")
-
-[node name="Mountain2_3" type="Sprite2D" parent="Mountain4"]
-texture_filter = 1
-texture = ExtResource("4_hgbjx")
-offset = Vector2(256, 0)
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)
 
 [node name="foreground" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0)
-scroll_offset = Vector2(0, 20)
-repeat_size = Vector2(768, 0)
-autoscroll = Vector2(-2, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
 [node name="Mountain2_1" type="Sprite2D" parent="foreground"]
 texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 20)
 texture = ExtResource("5_dcp3y")
-offset = Vector2(-256, 0)
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)
 
-[node name="Mountain2_2" type="Sprite2D" parent="foreground"]
-texture_filter = 1
-texture = ExtResource("5_dcp3y")
-
-[node name="Mountain2_3" type="Sprite2D" parent="foreground"]
-texture_filter = 1
-texture = ExtResource("5_dcp3y")
-offset = Vector2(256, 0)
-
-[node name="foreground2" type="Parallax2D" parent="."]
+[node name="foreground1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.6, 0)
-scroll_offset = Vector2(0, 40)
-repeat_size = Vector2(768, 0)
-autoscroll = Vector2(-2, 0)
+repeat_size = Vector2(512, 0)
+follow_viewport = false
+ignore_camera_scroll = true
 
-[node name="Mountain2_1" type="Sprite2D" parent="foreground2"]
+[node name="Mountain2_1" type="Sprite2D" parent="foreground1"]
 texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 40)
 texture = ExtResource("5_dcp3y")
-offset = Vector2(-256, 0)
-
-[node name="Mountain2_2" type="Sprite2D" parent="foreground2"]
-texture_filter = 1
-texture = ExtResource("5_dcp3y")
-
-[node name="Mountain2_3" type="Sprite2D" parent="foreground2"]
-texture_filter = 1
-texture = ExtResource("5_dcp3y")
-offset = Vector2(256, 0)
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 256)

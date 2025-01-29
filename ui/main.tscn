@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://clug72fd61e6v"]
+
+[ext_resource type="Script" path="res://ui/main.gd" id="1_ew7fs"]
+[ext_resource type="PackedScene" uid="uid://qlfymm5u3u08" path="res://world/parallax_bg.tscn" id="2_r1e3n"]
+[ext_resource type="PackedScene" uid="uid://i2sstbn0po53" path="res://ui/menu.tscn" id="3_kdfij"]
+
+[node name="Main" type="Control" groups=["main"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ew7fs")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(-768, 0)
+anchor_mode = 0
+
+[node name="ParallaxBG" parent="SubViewportContainer/SubViewport/Camera2D" node_paths=PackedStringArray("_camera") instance=ExtResource("2_r1e3n")]
+_camera = NodePath("..")
+
+[node name="Menu" parent="." instance=ExtResource("3_kdfij")]
+layout_mode = 1
+
+[connection signal="start_game" from="Menu" to="." method="_on_menu_start_game"]
+
+[editable path="SubViewportContainer/SubViewport/Camera2D/ParallaxBG"]

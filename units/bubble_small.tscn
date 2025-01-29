@@ -1,6 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvrsny1i6lt7k"]
+[gd_scene load_steps=11 format=3 uid="uid://cvrsny1i6lt7k"]
 
 [ext_resource type="PackedScene" uid="uid://568kua6fped3" path="res://units/bubble.tscn" id="1_dtwh8"]
+[ext_resource type="Script" path="res://units/unit_data.gd" id="2_syxe0"]
+
+[sub_resource type="Resource" id="Resource_emog2"]
+resource_local_to_scene = true
+script = ExtResource("2_syxe0")
+position = Vector2(0, 0)
+unit_type = 0
 
 [sub_resource type="Animation" id="Animation_f6xdl"]
 length = 0.001
@@ -129,7 +136,8 @@ _data = {
 "walk": SubResource("Animation_yx3qf")
 }
 
-[node name="bubble" instance=ExtResource("1_dtwh8")]
+[node name="bubble_small" instance=ExtResource("1_dtwh8")]
+data = SubResource("Resource_emog2")
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

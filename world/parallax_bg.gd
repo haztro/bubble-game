@@ -1,6 +1,12 @@
 extends Node2D
 
 
+@export var _camera: Camera2D
+@export var enabled: bool = true
+
+var offset = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,23 +14,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print($Mountain3/Mountain3_1.offset)
+	if enabled:
+		set_screen_offset(_camera.position.x + offset)
 
 
-
-func print_offset():
-	print($Sky.scroll_offset)
-	print($Mountain3.scroll_offset)
-	print($Mountain2.scroll_offset)
-	print($Mountain4.scroll_offset)
-	print($foreground.scroll_offset)
-	print($foreground2.scroll_offset)
-	
-func set_offset(val1, val2, val3, val4, val5, val6):
-	$Sky.scroll_offset = val1
-	$Mountain3.scroll_offset = val2
-	$Mountain2.scroll_offset = val3
-	$Mountain4.scroll_offset = val4
-	$foreground.scroll_offset = val5
-	$foreground2.scroll_offset = val6
+func set_screen_offset(val):
+	for child in get_children():
+		child.set_screen_offset(Vector2(val, 0))
 	
