@@ -10,13 +10,23 @@ extends CharacterBody2D
 @onready var _fsm = get_node("state_machine")
 @onready var anim_player = get_node("AnimationPlayer")
 @onready var navigation_agent: NavigationAgent2D = get_node("NavigationAgent2D")
+@onready var _death_sound: AudioStreamPlayer = get_node("death_sound")
+@onready var _scream_sound: AudioStreamPlayer = get_node("scream_sound")
+@onready var _scream_timer: Timer = get_node("Timer")
+
+var _enemy_textures = [
+	preload("res://assets/characters/enemy/bubble-enemy-small-Sheet.png"),
+	preload("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png"),
+	preload("res://assets/characters/enemy/bubble-enemy-big-Sheet.png"),
+]
+
 
 var run_speed = 150
 @export var health = 1.0
 
 @export var data: UnitData = UnitData.new()
 
-#var velocity: Vector2 = Vector2.ZERO
+
 var target = null
 var destination: Vector2 = Vector2.ZERO
 var direction: Vector2 = Vector2.ZERO
@@ -29,18 +39,12 @@ var split = false
 func _ready() -> void:
 	if is_enemy:
 		add_to_group("enemy")
-		match data.unit_type:
-			Game.UNIT_TYPE.SMALL:
-				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-small-Sheet.png")
-			Game.UNIT_TYPE.MEDIUM:
-				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-medium-Sheet.png")
-			Game.UNIT_TYPE.LARGE:
-				_sprite.texture = load("res://assets/characters/enemy/bubble-enemy-big-Sheet.png")
+		_sprite.texture = _enemy_textures[data.unit_type]
 		if split:
 			_fsm.set_state("StateSearch")
 	else:
 		add_to_group("human")
-		$Timer.wait_time = randf_range(0.5, 2)
+		_scream_timer.wait_time = randf_range(0.5, 2)
 		_fsm.set_state("StateSearch")
 		if not split:
 			_sprite.frame = 24
@@ -56,13 +60,14 @@ func _process(delta: float) -> void:
 	
 
 func run_to_next():
+	if health <= 0: return # if called during animation need to ignore cause dead
 	if Game.game_state == Game.GAME_STATE.FIGHT:
-		destination = Vector2(randi_range(192, 384), randi_range(75, 190)) + Vector2(384, 0)
+		destination = Vector2(randi_range(192, 384), randi_range(75, 190)) + Vector2(384+192, 0)
 	_fsm.set_state("StateRun")	
 	
 	
 func start_battle():
-	$Timer.start()
+	_scream_timer.start()
 	_fsm.set_state("StateSearch")
 
 	
@@ -71,40 +76,34 @@ func spawn_self():
 	await anim_player.animation_finished
 	_fsm.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	if Game.game_state == Game.GAME_STATE.FIGHT:
-		_fsm.set_state("Search")
+		_fsm.set_state("StateSearch")
 	else:
 		_fsm.set_state("StateIdle")
+		
+		
+func set_body_direction():
+	# if there's an enemy then go to its position otherwise just
+	# run to destination
+	if position.x > (destination.x if target == null else target.position.x):
+		_sprite.set_flip_h(1)
+		$CollisionShape2D.position.x = 3
+	else:
+		_sprite.set_flip_h(0)
+		$CollisionShape2D.position.x = -3
 	
 	
 func _physics_process(delta):
-	if target != null:
-		if _fsm._state_name == "StateMove":
-			destination = target.position
-			destination.x += Game.ATTACK_DISTANCE * (-1 if position.x < target.position.x else 1)
-			direction = position.direction_to(destination)
-			velocity = velocity.lerp(direction * speed, Game.ACCELERATION)
-			if position.x > target.position.x:
-				_sprite.set_flip_h(1)
-				$CollisionShape2D.position.x = 3
-			else:
-				_sprite.set_flip_h(0)
-				$CollisionShape2D.position.x = -3
-		else:
-			velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
+	var current_speed = run_speed if target == null else speed
+	var should_move = (target == null and _fsm._state_name == "StateRun") or \
+						(target != null and _fsm._state_name == "StateMove")
+
+	if should_move:
+		direction = position.direction_to(destination)
+		velocity = velocity.lerp(direction * current_speed, Game.ACCELERATION)
+		set_body_direction()
 	else:
-		if _fsm._state_name == "StateRun":
-			direction = position.direction_to(destination)
-			velocity = velocity.lerp(direction * run_speed, Game.ACCELERATION)
-			if position.x > destination.x:
-				_sprite.set_flip_h(1)
-				$CollisionShape2D.position.x = 3
-			else:
-				_sprite.set_flip_h(0)
-				$CollisionShape2D.position.x = -3
-		else:
-			velocity = Vector2.ZERO #velocity.lerp(Vector2.ZERO, 0)
-			
-	#navigation_agent.set_velocity(velocity)
+		velocity = Vector2.ZERO
+
 	move_and_slide()
 	data.position = position
 	
@@ -122,23 +121,22 @@ func die():
 	_fsm.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	anim_player.stop
 	anim_player.play("death")
-	var offset1 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
-	var offset2 = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
+	var offset = position + Vector2(randi_range(-3, 3), randf_range(-3, 3))
 
-	$AudioStreamPlayer2D.set_pitch_scale(randf_range(0.85, 1.15))
-	$AudioStreamPlayer2D.play()
+	_death_sound.play()
 
 	match data.unit_type:
 		Game.UNIT_TYPE.SMALL:
 			pass
 		Game.UNIT_TYPE.MEDIUM:
-			get_tree().get_first_node_in_group("world").spawn_bubble(offset1 , "small", is_in_group("enemy"))
-			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "small", is_in_group("enemy"))
+			for i in range(2): get_parent().spawn_bubble(offset, Game.UNIT_TYPE.SMALL, is_in_group("enemy"))
 		Game.UNIT_TYPE.LARGE:
-			get_tree().get_first_node_in_group("world").spawn_bubble(offset1, "medium", is_in_group("enemy"))
-			get_tree().get_first_node_in_group("world").spawn_bubble(offset2, "medium", is_in_group("enemy"))
+			for i in range(2): get_parent().spawn_bubble(offset*-1 , Game.UNIT_TYPE.MEDIUM, is_in_group("enemy"))
 		
 	await anim_player.animation_finished
+	remove_from_group("enemy" if is_in_group("enemy") else "human")
+	get_parent().check_win()
+	get_parent().remove_child(self)
 	queue_free()
 	
 	
@@ -149,12 +147,6 @@ func attack():
 			target.die()
 
 
-func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	#print(is_enemy, anim_name)
-	pass
-
-
 func _on_timer_timeout() -> void:
 	if randf() <= 0.8:
-		$cry.set_pitch_scale(randf_range(0.85, 1.15))
-		$cry.play()
+		_scream_sound.play()

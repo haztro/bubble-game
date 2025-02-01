@@ -26,6 +26,9 @@ func enter_state():
 	
 func process(delta):
 	if _entity.target != null:
+		_entity.destination = _entity.target.position
+		_entity.destination.x += Game.ATTACK_DISTANCE * (-1 if _entity.position.x < _entity.target.position.x else 1)
+		
 		if abs(_entity.position.x - _entity.target.position.x) <= Game.ATTACK_DISTANCE_X:
 			if abs(_entity.position.y - _entity.target.position.y) <= Game.ATTACK_DISTANCE_Y:
 				_fsm.set_state(attack_state.name)

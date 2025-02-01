@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6338teuh86v8"]
 
 [ext_resource type="Script" path="res://world/building.gd" id="1_wlh3y"]
-[ext_resource type="Texture2D" uid="uid://bl3wqvyekd0h3" path="res://assets/environment/building-barracks-Sheet.png" id="2_4mfe2"]
+[ext_resource type="Texture2D" uid="uid://qux2tkaf3shk" path="res://assets/environment/building-barracks-Sheet.png" id="2_4mfe2"]
 
 [node name="building" type="Node2D"]
 script = ExtResource("1_wlh3y")
@@ -10,3 +10,5 @@ script = ExtResource("1_wlh3y")
 texture = ExtResource("2_4mfe2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

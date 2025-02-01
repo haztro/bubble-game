@@ -1,9 +1,6 @@
 class_name Barracks
 extends "res://world/building.gd"
 
-
-@onready var _spawn_sound = get_node("spawn_sound")
-
 var bubble_small_scene = preload("res://units/bubble_small.tscn")
 var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
 var bubble_large_scene = preload("res://units/bubble_large.tscn")
@@ -16,7 +13,7 @@ var current_unit_type = Game.UNIT_TYPE.SMALL
 func _ready() -> void:
 	super._ready()
 	anim_player.seek(0.4)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,7 +22,7 @@ func _process(delta: float) -> void:
 	
 	
 func add_bubble_node(unit_type) -> void:
-	_spawn_sound.play()
+	_audio_player.play()
 	var bubble = null
 	match unit_type:
 		Game.UNIT_TYPE.SMALL:
@@ -46,12 +43,14 @@ func add_bubble_node(unit_type) -> void:
 	tween.tween_callback(bubble.spawn_self)
 	
 	spawning = false
+	anim_player.play("idle")
 	get_tree().get_first_node_in_group("ui").set_buy_btns_disabled(false)
 	
 func new_bubble(unit_type) -> void:
-	spawning = true
-	current_unit_type = unit_type
-	anim_player.play("spawn")
+	if anim_player.current_animation == "idle":
+		spawning = true
+		current_unit_type = unit_type
+		anim_player.play("spawn")
 	
 	
 # Called at end of "spawn" animation

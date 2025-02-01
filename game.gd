@@ -44,7 +44,12 @@ var BARRACKS_UPGRADE_COSTS = {
 	1: 100,
 }
 
-var bubble_bux = 100000
+var bubble_bux = 50
+var barracks_tier = 0
+var speed_tier = 1
+var worth_tier = 1
+
+
 var game_state: GAME_STATE = GAME_STATE.MENU
 var level: int = 0
 var parallax_positions = []
@@ -54,10 +59,10 @@ var camera_pos: Vector2 = Vector2.ZERO
 var unit_data = []
 
 
-func inc_speed_cost(tier):
+func inc_speed_cost():
 	UPGRADE_SPEED_COST *= 3
 	
-func inc_worth_cost(tier):
+func inc_worth_cost():
 	UPGRADE_WORTH_COST *= 3
 	
 	
@@ -68,42 +73,39 @@ func buy_bubble(unit_type) -> bool:
 	return false
 	
 	
-func buy_speed_upgrade(current_tier: int) -> bool:
+func buy_speed_upgrade() -> bool:
 	if bubble_bux >= UPGRADE_SPEED_COST:
 		bubble_bux -= UPGRADE_SPEED_COST
-		inc_speed_cost(current_tier)
+		speed_tier += 1
+		inc_speed_cost()
 		return true
 	return false
 	
 	
-func buy_worth_upgrade(current_tier: int) -> bool:
+func buy_worth_upgrade() -> bool:
 	if bubble_bux >= UPGRADE_WORTH_COST:
 		bubble_bux -= UPGRADE_WORTH_COST
-		inc_worth_cost(current_tier)
+		worth_tier += 1
+		inc_worth_cost()
 		return true
 	return false
 	
 	
-func buy_barracks_upgrade(current_tier: int) -> bool:
-	if bubble_bux >= BARRACKS_UPGRADE_COSTS[current_tier]:
-		bubble_bux -= BARRACKS_UPGRADE_COSTS[current_tier]
+func buy_barracks_upgrade() -> bool:
+	if bubble_bux >= BARRACKS_UPGRADE_COSTS[barracks_tier]:
+		bubble_bux -= BARRACKS_UPGRADE_COSTS[barracks_tier]
+		barracks_tier += 1
 		return true
 	return false
 
 
 func reset_game():
 	bubble_bux	= 50
+	barracks_tier = 0
+	speed_tier = 1
+	worth_tier = 1
 	UPGRADE_SPEED_COST = 20
 	UPGRADE_WORTH_COST = 20
 	level = 0
 	game_state = GAME_STATE.MENU
 	
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

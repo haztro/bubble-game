@@ -2,10 +2,9 @@ extends Node2D
 
 
 @export var init_position: Vector2
-@onready var anim_player = get_node("AnimationPlayer")
+@onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
+@onready var _audio_player: AudioStreamPlayer = get_node("AudioStreamPlayer")
 
-
-var tier = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,4 +17,4 @@ func _process(delta: float) -> void:
 	
 	
 func upgrade():
-	tier += 1
+	pass

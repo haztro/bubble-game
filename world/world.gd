@@ -14,7 +14,7 @@ var bubble_small_scene = preload("res://units/bubble_small.tscn")
 var bubble_medium_scene = preload("res://units/bubble_medium.tscn")
 var bubble_large_scene = preload("res://units/bubble_large.tscn")
 
-var menu = true
+var battle_over = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,9 +28,6 @@ func _process(delta: float) -> void:
 	
 	
 func init_base():
-	_ui.visible = true
-	_ui.set_progress_bar_visible(true)
-	_ui.show_buttons()
 	Game.game_state = Game.GAME_STATE.BASE
 	await get_tree().create_timer(1)
 	_bubble_maker.get_node("Timer").start()
@@ -40,7 +37,10 @@ func init_base():
 func transfer_units(reset=false):
 	for unit in get_tree().get_nodes_in_group("human"):
 		unit.reparent(self if reset else get_parent(), true)
-		unit.position += Vector2(-384, 0) if reset else Vector2.ZERO
+		if reset:
+			run_to_next.connect(unit.run_to_next)
+			start_battle.connect(unit.start_battle)
+		unit.position += Vector2(-384-192, 0) if reset else Vector2.ZERO
 
 	
 func spawn_bubble(bubble_pos, unit_type, is_enemy):
@@ -55,22 +55,31 @@ func spawn_bubble(bubble_pos, unit_type, is_enemy):
 	bubble.is_enemy = is_enemy
 	bubble.position = bubble_pos
 	bubble.split = true
+
+	if not is_enemy:
+		run_to_next.connect(bubble.run_to_next)
+	start_battle.connect(bubble.start_battle)
+
 	add_child(bubble)
 	
 	
 func check_win():
 	var num_human = get_tree().get_node_count_in_group("human")
 	var num_enemy = get_tree().get_node_count_in_group("enemy")
-	
+
 	if num_human <= 0:
-		$Timer.stop()
-		Game.reset_game()
-		#await get_tree().create_timer(3)
-		#get_tree().reload_current_scene()
+		if not battle_over:
+			lose_animation()
+		battle_over = true
 	elif num_enemy <= 0:
-		Game.level += 1 
-		win_animation()
-		$Timer.stop()
+		if not battle_over: 
+			Game.level += 1 
+			win_animation()
+		battle_over = true
+		
+		
+func lose_animation():
+	get_tree().current_scene.reset_game()
 		
 		
 func win_animation():
@@ -95,9 +104,6 @@ func _on_round_timer_timeout() -> void:
 	await tween.finished
 	
 	Game.game_state = Game.GAME_STATE.FIGHT
-	$Timer.start()
 	emit_signal("start_battle")
 	
 	
-func _on_timer_timeout() -> void:
-	check_win()

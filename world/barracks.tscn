@@ -89,5 +89,5 @@ libraries = {
 "": SubResource("AnimationLibrary_yvxs3")
 }
 
-[node name="spawn_sound" type="AudioStreamPlayer" parent="." index="2"]
+[node name="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("3_boieq")

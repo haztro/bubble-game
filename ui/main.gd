@@ -54,6 +54,7 @@ func load_level():
 		_parallax.offset = (384 + 192) * Game.level
 		_camera.position.x = -384
 		current_world.transfer_units(false)
+		_viewport.remove_child(current_world)
 		current_world.queue_free()
 
 	var world = world_scene.instantiate()
@@ -69,9 +70,20 @@ func load_level():
 	var tween = get_tree().create_tween()
 	var ease = Tween.EASE_OUT if Game.level == 0 else Tween.EASE_IN_OUT
 	tween.set_parallel()
-	tween.tween_property(world._camera, "position", Vector2(0, 0), 2).set_ease(ease).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(_camera, "position", Vector2(0, 0), 2).set_ease(ease).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(world.init_base).set_delay(1.5)
 
 	return world
 	
 	
+
+func reset_game():
+	Game.reset_game() 
+	var tween = get_tree().create_tween()
+	tween.tween_property(_camera, "position", Vector2(-768, 0), 7).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel()
+	tween.tween_property(_parallax, "offset", 0, 7).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	
+	var tween1 = get_tree().create_tween()
+	tween1.tween_interval(5)
+	tween1.tween_property(_menu, "position", Vector2(128, _menu.position.y), 2.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)

@@ -12,7 +12,6 @@ script = ExtResource("1_k30sl")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ui" parent="CanvasLayer" node_paths=PackedStringArray("_barracks", "_bubble_maker", "_round_timer") instance=ExtResource("2_h27jg")]
-visible = false
 _barracks = NodePath("../../barracks")
 _bubble_maker = NodePath("../../bubblemaker")
 _round_timer = NodePath("../../RoundTimer")
@@ -28,11 +27,7 @@ position = Vector2(107, 90)
 init_position = Vector2(107, 90)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
 one_shot = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

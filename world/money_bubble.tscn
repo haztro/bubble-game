@@ -1,13 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://b4klkai4w4a54"]
+[gd_scene load_steps=24 format=3 uid="uid://b4klkai4w4a54"]
 
 [ext_resource type="Script" path="res://world/money_bubble.gd" id="1_x2wbr"]
 [ext_resource type="Texture2D" uid="uid://d4inac4yuryau" path="res://assets/characters/bubble-income-Sheet.png" id="2_60qlt"]
 [ext_resource type="Texture2D" uid="uid://dh8ro0aubcde3" path="res://assets/ui/numbers-Sheet.png" id="3_ka7cn"]
-[ext_resource type="AudioStream" uid="uid://d08j31h2wlf6x" path="res://assets/audio/pops/pop_1.mp3" id="4_s8nvo"]
-[ext_resource type="AudioStream" uid="uid://fvvpn7ek65ns" path="res://assets/audio/pops/pop_2.mp3" id="5_b2wqn"]
-[ext_resource type="AudioStream" uid="uid://blajjijv88gcc" path="res://assets/audio/pops/pop_3.mp3" id="6_8bb81"]
-[ext_resource type="AudioStream" uid="uid://c8njaod5jtckd" path="res://assets/audio/pops/pop_4.mp3" id="7_n0gok"]
-[ext_resource type="AudioStream" uid="uid://s6meytja5eqx" path="res://assets/audio/pops/pop_5.mp3" id="8_opykn"]
+[ext_resource type="AudioStream" uid="uid://de3wtk75p381q" path="res://assets/audio/pops/random_pop.tres" id="4_rdily"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xit4g"]
 atlas = ExtResource("2_60qlt")
@@ -37,10 +33,6 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("2_60qlt")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgoow"]
-atlas = ExtResource("2_60qlt")
-region = Rect2(32, 64, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ndb77"]
 animations = [{
 "frames": [{
@@ -64,9 +56,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0u4c6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cgoow")
 }],
 "loop": false,
 "name": &"default",
@@ -151,14 +140,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4keio"]
-streams_count = 5
-stream_0/stream = ExtResource("4_s8nvo")
-stream_1/stream = ExtResource("5_b2wqn")
-stream_2/stream = ExtResource("6_8bb81")
-stream_3/stream = ExtResource("7_n0gok")
-stream_4/stream = ExtResource("8_opykn")
-
 [node name="MoneyBubble" type="Node2D"]
 z_index = -1
 script = ExtResource("1_x2wbr")
@@ -167,23 +148,12 @@ script = ExtResource("1_x2wbr")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ndb77")
 
-[node name="number" type="AnimatedSprite2D" parent="."]
+[node name="value" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_h5i8v")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
-[node name="Timer2" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_4keio")
-volume_db = -19.138
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rdily")
 
 [connection signal="animation_finished" from="pop" to="." method="_on_pop_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

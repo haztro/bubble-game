@@ -18,54 +18,76 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_ui_visible(true)
+	if Game.barracks_tier >= 1:
+		_buy_med_btn.get_parent().visible = true
+	if Game.barracks_tier >= 2:
+		_buy_large_btn.get_parent().visible = true
+		_buy_upgrade_btn.get_parent().visible = false
+	_upgrade_label.text = str(Game.BARRACKS_UPGRADE_COSTS[min(Game.barracks_tier, 1)])
 
+	if Game.speed_tier >= Game.MAX_SPEED:
+		_speed_upgrade_btn.get_parent().modulate.a = 0
+	_speed_upgrade_btn.get_parent().get_node("Label").text = str(Game.UPGRADE_SPEED_COST)
 
+	if Game.worth_tier >= Game.MAX_WORTH:
+		_value_upgrade_btn.get_parent().modulate.a = 0
+	_value_upgrade_btn.get_parent().get_node("Label").text = str(Game.UPGRADE_WORTH_COST)
+
+	on_money_change()
+	set_buy_btns_disabled(false)
+	
+func set_ui_visible(val):
+	await show_buttons()
+	_progress_bar.modulate.a = 1 if val else 0 
+	_money_label.get_parent().modulate.a = 1 if val else 0
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_progress_bar.value = int(100 * (_round_timer.time_left / _round_timer.wait_time))
-
+	#pass
 
 func on_money_change():
 	_money_label.text = str(Game.bubble_bux)
 	_buy_upgrade_btn.disabled = !(Game.bubble_bux >= Game.BARRACKS_UPGRADE_COSTS[0])
 	_buy_upgrade_btn.disabled = !(Game.bubble_bux >= Game.BARRACKS_UPGRADE_COSTS[1])
-	_speed_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_SPEED_COST or _bubble_maker.tier >= Game.MAX_SPEED)
-	_value_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_WORTH_COST or _bubble_maker.worth >= Game.MAX_WORTH)
-		
-		
+	_speed_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_SPEED_COST or Game.speed_tier >= Game.MAX_SPEED)
+	_value_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_WORTH_COST or Game.worth_tier >= Game.MAX_WORTH)		
+	_buy_small_btn.disabled = !(!_buy_small_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.SMALL]))
+	_buy_med_btn.disabled = !(!_buy_med_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.MEDIUM]))
+	_buy_large_btn.disabled = !(!_buy_large_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.LARGE]))
 
 func _on_speed_upgrade_pressed() -> void:
 	_btn_sound.play()
-	if Game.buy_speed_upgrade(_bubble_maker.tier):
+	if Game.buy_speed_upgrade():
 		_bubble_maker.upgrade()
 		on_money_change()
-		if _bubble_maker.tier >= Game.MAX_SPEED:
+		if Game.speed_tier >= Game.MAX_SPEED:
 			_speed_upgrade_btn.get_parent().modulate.a = 0
 		_speed_upgrade_btn.get_parent().get_node("Label").text = str(Game.UPGRADE_SPEED_COST)
 
 
 func _on_value_upgrade_pressed() -> void:
 	_btn_sound.play()
-	if Game.buy_worth_upgrade(_bubble_maker.tier):
-		_bubble_maker.upgrade_worth()
+	if Game.buy_worth_upgrade():
+		_bubble_maker.upgrade()
 		on_money_change()
-		if _bubble_maker.worth >= Game.MAX_WORTH:
+		if Game.worth_tier >= Game.MAX_WORTH:
 			_value_upgrade_btn.get_parent().modulate.a = 0
-		_value_upgrade_btn.get_parent().get_node("Label").text = '-'+str(Game.UPGRADE_WORTH_COST)
+		_value_upgrade_btn.get_parent().get_node("Label").text = str(Game.UPGRADE_WORTH_COST)
 
 
 func _on_buy_upgrade_pressed() -> void:
 	_btn_sound.play()
-	if Game.buy_barracks_upgrade(_barracks.tier):
+	if Game.buy_barracks_upgrade():
 		on_money_change()
-		if _barracks.tier == 0:
+		if Game.barracks_tier == 1:
 			_buy_med_btn.get_parent().visible = true
-		elif _barracks.tier == 1:
+		elif Game.barracks_tier == 2:
 			_buy_large_btn.get_parent().visible = true
 			_buy_upgrade_btn.get_parent().visible = false
 		_barracks.upgrade()
-		_upgrade_label.text = str(Game.BARRACKS_UPGRADE_COSTS[min(_barracks.tier, 1)])
+		_upgrade_label.text = str(Game.BARRACKS_UPGRADE_COSTS[min(Game.barracks_tier, 1)])
 
 
 func _on_buy_small_pressed() -> void:
@@ -106,16 +128,19 @@ func set_buy_btns_disabled(val: bool) -> void:
 		
 func set_progress_bar_visible(val):
 	_progress_bar.modulate.a = 1 if val else 0 
+	_money_label.get_parent().modulate.a = 1 if val else 0
 	
 
 func hide_buttons():
 	var tween = get_tree().create_tween()
-	tween.tween_property(_buttons, "position", Vector2(-192, _buttons.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(_buttons, "position:x", -192, 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
 	
 func show_buttons():
-	print(_buttons.position)
-	_buttons.position.x = -192
+	var tween1 = get_tree().create_tween()
+	tween1.tween_property(_buttons, "position:x", -192, 0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween1.tween_property(_buttons, "modulate:a", 1, 0)
+
 	var tween = get_tree().create_tween()
-	tween.tween_property(_buttons, "position", Vector2(0, _buttons.position.y), 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	
+	tween.tween_property(_buttons, "position:x", 0, 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	await tween.finished

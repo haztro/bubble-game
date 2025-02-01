@@ -1,16 +1,14 @@
 class_name BubbleMaker
 extends "res://world/building.gd"
 
-@onready var _suck_sound = get_node("suck_sound")
+@onready var _money_timer: Timer = get_node("Timer")
 
 var money_bubble_scene = preload("res://world/money_bubble.tscn")
-var worth = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
 	anim_player.seek(0.4)
-	tier = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,29 +22,22 @@ func _on_timer_timeout() -> void:
 	
 	
 func spawn_bubble():
-	if Game.game_state == Game.GAME_STATE.BASE and Game.game_state == Game.GAME_STATE.BASE:
-		_suck_sound.play()
+	if Game.game_state == Game.GAME_STATE.BASE:
+		_audio_player.play()
 	var mb = money_bubble_scene.instantiate()
+	mb.position = position
 	mb.position.y -= 10
-	mb.worth = worth_function()
+	mb.worth = Game.worth_tier
 	mb.set_worth_card(mb.worth)
-	add_child(mb)
+	get_parent().add_child(mb)
 	
 	
 func speed_function():
-	return tier * 1
-	
-
-func worth_function():
-	return worth
+	return Game.speed_tier * 1
 	
 	
 func upgrade():
-	super.upgrade()
-	$Timer.wait_time = 1 / float(speed_function())
-	$Timer.start()
-	
-	
-func upgrade_worth():
-	worth += 1
+	super.upgrade()		# increase tier
+	_money_timer.wait_time = 1 / float(speed_function())
+	_money_timer.start()
 	

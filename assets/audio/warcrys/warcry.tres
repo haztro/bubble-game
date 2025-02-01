@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=9 format=3 uid="uid://cvykejg6g1n23"]
+
+[ext_resource type="AudioStream" uid="uid://vesn6napoy0h" path="res://assets/audio/warcrys/warcry_1.mp3" id="1_6cgm5"]
+[ext_resource type="AudioStream" uid="uid://ddrotbrsxy048" path="res://assets/audio/warcrys/warcry_2.mp3" id="2_dwvd7"]
+[ext_resource type="AudioStream" uid="uid://hdrsbi2r2wia" path="res://assets/audio/warcrys/warcry_3.mp3" id="3_docdi"]
+[ext_resource type="AudioStream" uid="uid://cttbyenj7ik2p" path="res://assets/audio/warcrys/warcry_4.mp3" id="4_un0k6"]
+[ext_resource type="AudioStream" uid="uid://bghju6ecsu5sh" path="res://assets/audio/warcrys/warcry_5.mp3" id="5_g5hac"]
+[ext_resource type="AudioStream" uid="uid://d2wxyv3omrfow" path="res://assets/audio/warcrys/warcry_6.mp3" id="6_pnub3"]
+[ext_resource type="AudioStream" uid="uid://dlqn84jukxvra" path="res://assets/audio/warcrys/warcry_7.mp3" id="7_a4u2p"]
+[ext_resource type="AudioStream" uid="uid://csxjodquldoxt" path="res://assets/audio/warcrys/warcry_8.mp3" id="8_43thn"]
+
+[resource]
+random_pitch = 1.2
+streams_count = 8
+stream_0/stream = ExtResource("1_6cgm5")
+stream_1/stream = ExtResource("2_dwvd7")
+stream_2/stream = ExtResource("3_docdi")
+stream_3/stream = ExtResource("4_un0k6")
+stream_4/stream = ExtResource("5_g5hac")
+stream_5/stream = ExtResource("6_pnub3")
+stream_6/stream = ExtResource("7_a4u2p")
+stream_7/stream = ExtResource("8_43thn")

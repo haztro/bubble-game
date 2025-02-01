@@ -28,6 +28,7 @@ region_rect = Rect2(0, 0, 512, 256)
 [node name="Mountain" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0)
 repeat_size = Vector2(512, 0)
+autoscroll = Vector2(2, 0)
 follow_viewport = false
 ignore_camera_scroll = true
 
@@ -42,6 +43,7 @@ region_rect = Rect2(0, 0, 512, 256)
 [node name="Mountain1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(512, 0)
+autoscroll = Vector2(1, 0)
 follow_viewport = false
 ignore_camera_scroll = true
 
@@ -56,6 +58,7 @@ region_rect = Rect2(0, 0, 512, 256)
 [node name="Mountain2" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.4, 0)
 repeat_size = Vector2(512, 0)
+autoscroll = Vector2(1.5, 0)
 follow_viewport = false
 ignore_camera_scroll = true
 
@@ -85,6 +88,7 @@ region_rect = Rect2(0, 0, 512, 256)
 [node name="foreground1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.6, 0)
 repeat_size = Vector2(512, 0)
+autoscroll = Vector2(2, 0)
 follow_viewport = false
 ignore_camera_scroll = true
 
