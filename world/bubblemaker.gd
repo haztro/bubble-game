@@ -9,6 +9,7 @@ var money_bubble_scene = preload("res://world/money_bubble.tscn")
 func _ready() -> void:
 	super._ready()
 	anim_player.seek(0.4)
+	_money_timer.wait_time = 1 / float(speed_function())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

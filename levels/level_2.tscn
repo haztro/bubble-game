@@ -24,18 +24,18 @@ position = Vector2(0, 0)
 unit_type = 1
 
 [node name="Level2" instance=ExtResource("1_nckeg")]
-position = Vector2(1, 13)
 
 [node name="bubble" parent="." index="0" instance=ExtResource("2_3vw4f")]
+position = Vector2(-7, 13)
 is_enemy = true
 data = SubResource("Resource_kn5o5")
 
 [node name="bubble2" parent="." index="1" instance=ExtResource("2_3vw4f")]
-position = Vector2(-1, -20)
+position = Vector2(-8, -7)
 is_enemy = true
 data = SubResource("Resource_i3cqg")
 
 [node name="bubble_medium" parent="." index="2" instance=ExtResource("3_u1r1n")]
-position = Vector2(30, -11)
+position = Vector2(23, 2)
 is_enemy = true
 data = SubResource("Resource_8wpp5")

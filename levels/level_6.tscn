@@ -33,21 +33,21 @@ unit_type = 1
 position = Vector2(2, 27)
 
 [node name="bubble_large2" parent="." index="0" instance=ExtResource("2_ejye8")]
-position = Vector2(1, -23)
+position = Vector2(2, 7)
 is_enemy = true
 data = SubResource("Resource_rwca2")
 
 [node name="bubble_large5" parent="." index="1" instance=ExtResource("2_ejye8")]
-position = Vector2(45, -33)
+position = Vector2(30, -17)
 is_enemy = true
 data = SubResource("Resource_dnv3u")
 
 [node name="bubble_medium4" parent="." index="2" instance=ExtResource("3_1vja2")]
-position = Vector2(13, -54)
+position = Vector2(3, -47)
 is_enemy = true
 data = SubResource("Resource_ek2re")
 
 [node name="bubble_medium5" parent="." index="3" instance=ExtResource("3_1vja2")]
-position = Vector2(-28, -55)
+position = Vector2(-22, -28)
 is_enemy = true
 data = SubResource("Resource_ane7p")

@@ -30,23 +30,23 @@ position = Vector2(0, 0)
 unit_type = 1
 
 [node name="Level1" instance=ExtResource("1_o21sr")]
-position = Vector2(2, 27)
 
 [node name="bubble" parent="." index="0" instance=ExtResource("2_aewu4")]
+position = Vector2(-6, 21)
 is_enemy = true
 data = SubResource("Resource_4hj2p")
 
 [node name="bubble2" parent="." index="1" instance=ExtResource("2_aewu4")]
-position = Vector2(-1, -20)
+position = Vector2(-7, 1)
 is_enemy = true
 data = SubResource("Resource_fo0pa")
 
 [node name="bubble3" parent="." index="2" instance=ExtResource("2_aewu4")]
-position = Vector2(0, -46)
+position = Vector2(-6, -25)
 is_enemy = true
 data = SubResource("Resource_l6rjx")
 
 [node name="bubble_medium2" parent="." index="3" instance=ExtResource("3_oplfj")]
-position = Vector2(30, -37)
+position = Vector2(24, 2)
 is_enemy = true
 data = SubResource("Resource_76l4s")

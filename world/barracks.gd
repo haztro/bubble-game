@@ -44,7 +44,7 @@ func add_bubble_node(unit_type) -> void:
 	
 	spawning = false
 	anim_player.play("idle")
-	get_tree().get_first_node_in_group("ui").set_buy_btns_disabled(false)
+	get_parent()._ui.set_buy_btns_disabled(false)
 	
 func new_bubble(unit_type) -> void:
 	if anim_player.current_animation == "idle":

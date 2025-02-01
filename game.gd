@@ -15,9 +15,9 @@ enum GAME_STATE {
 
 const ACCELERATION: float = 0.5
 const FRICTION: float = 0.2
-const ATTACK_DISTANCE: float = 15
+const ATTACK_DISTANCE: float = 20
 const ATTACK_DISTANCE_X: float = 20
-const ATTACK_DISTANCE_Y: float = 30
+const ATTACK_DISTANCE_Y: float = 10
 const ATTACK_RADIUS_SQR: float = 20
 
 const CELEBRATION_TIME: float = 0.1

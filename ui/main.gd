@@ -64,7 +64,7 @@ func load_level():
 	
 	# Add enemies 
 	var level = all_levels[Game.level].instantiate()
-	level.position = Vector2(384 + 192/2, 108)
+	level.position = Vector2(384 + 192/2, 118)
 	world.add_child(level)
 
 	var tween = get_tree().create_tween()

@@ -20,11 +20,11 @@ unit_type = 2
 position = Vector2(2, 27)
 
 [node name="bubble_large" parent="." index="0" instance=ExtResource("4_08vsu")]
-position = Vector2(35, 2)
+position = Vector2(7, 6)
 is_enemy = true
 data = SubResource("Resource_no3gx")
 
 [node name="bubble_large2" parent="." index="1" instance=ExtResource("4_08vsu")]
-position = Vector2(-5, -26)
+position = Vector2(1, -35)
 is_enemy = true
 data = SubResource("Resource_dy0gw")

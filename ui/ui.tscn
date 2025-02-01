@@ -240,7 +240,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "50
+text = "-50
 "
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer"]

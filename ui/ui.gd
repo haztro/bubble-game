@@ -50,12 +50,16 @@ func _process(delta: float) -> void:
 func on_money_change():
 	_money_label.text = str(Game.bubble_bux)
 	_buy_upgrade_btn.disabled = !(Game.bubble_bux >= Game.BARRACKS_UPGRADE_COSTS[0])
-	_buy_upgrade_btn.disabled = !(Game.bubble_bux >= Game.BARRACKS_UPGRADE_COSTS[1])
+	if Game.barracks_tier == 1:
+		_buy_upgrade_btn.disabled = !(Game.bubble_bux >= Game.BARRACKS_UPGRADE_COSTS[1])
 	_speed_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_SPEED_COST or Game.speed_tier >= Game.MAX_SPEED)
 	_value_upgrade_btn.disabled = (Game.bubble_bux < Game.UPGRADE_WORTH_COST or Game.worth_tier >= Game.MAX_WORTH)		
-	_buy_small_btn.disabled = !(!_buy_small_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.SMALL]))
-	_buy_med_btn.disabled = !(!_buy_med_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.MEDIUM]))
-	_buy_large_btn.disabled = !(!_buy_large_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.LARGE]))
+	
+	print(_barracks.spawning)
+	set_buy_btns_disabled(false)
+	#_buy_small_btn.disabled = !(!_buy_small_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.SMALL]))
+	#_buy_med_btn.disabled = !(!_buy_med_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.MEDIUM]))
+	#_buy_large_btn.disabled = !(!_buy_large_btn.disabled and (Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.LARGE]))
 
 func _on_speed_upgrade_pressed() -> void:
 	_btn_sound.play()
@@ -93,33 +97,40 @@ func _on_buy_upgrade_pressed() -> void:
 func _on_buy_small_pressed() -> void:
 	_btn_sound.play()
 	if Game.buy_bubble(Game.UNIT_TYPE.SMALL):
+		_barracks.new_bubble(Game.UNIT_TYPE.SMALL)
+		print(_barracks.spawning)
 		on_money_change()
 		set_buy_btns_disabled(true)
-		_barracks.new_bubble(Game.UNIT_TYPE.SMALL)
+		
 	
 
 func _on_buy_med_pressed() -> void:
 	_btn_sound.play()
 	if Game.buy_bubble(Game.UNIT_TYPE.MEDIUM):
+		_barracks.new_bubble(Game.UNIT_TYPE.MEDIUM)
 		on_money_change()
 		set_buy_btns_disabled(true)
-		_barracks.new_bubble(Game.UNIT_TYPE.MEDIUM)
+		
 
 
 func _on_buy_large_pressed() -> void:
 	_btn_sound.play()
 	if Game.buy_bubble(Game.UNIT_TYPE.LARGE):
+		_barracks.new_bubble(Game.UNIT_TYPE.LARGE)
 		on_money_change()
 		set_buy_btns_disabled(true)
-		_barracks.new_bubble(Game.UNIT_TYPE.LARGE)
 		
-	
+
 # buttons get enabled by barracks once spawn complete
 func set_buy_btns_disabled(val: bool) -> void:
 	if not val and not _barracks.spawning:
 		_buy_small_btn.disabled = !(Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.SMALL])
 		_buy_med_btn.disabled = !(Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.MEDIUM])
 		_buy_large_btn.disabled = !(Game.bubble_bux >= Game.UNIT_COSTS[Game.UNIT_TYPE.LARGE])
+	elif not val and _barracks.spawning:
+		_buy_small_btn.disabled = true
+		_buy_med_btn.disabled = true
+		_buy_large_btn.disabled = true
 	else:
 		_buy_small_btn.disabled = val
 		_buy_med_btn.disabled = val
