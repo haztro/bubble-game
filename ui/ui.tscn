@@ -144,7 +144,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-20"
+text = "20"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -162,7 +162,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-20"
+text = "20"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -184,7 +184,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-10"
+text = "10"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
@@ -203,7 +203,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-30"
+text = "30"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
@@ -222,7 +222,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-100"
+text = "100"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -240,7 +240,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_7cu6m")
 theme_override_font_sizes/font_size = 8
-text = "-50
+text = "50
 "
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer"]
