@@ -148,6 +148,7 @@ script = ExtResource("1_gf67b")
 texture_filter = 1
 position = Vector2(0, -4)
 texture = ExtResource("2_ysjgt")
+offset = Vector2(3, 0)
 hframes = 6
 vframes = 6
 
@@ -182,7 +183,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 2)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_jok2q")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

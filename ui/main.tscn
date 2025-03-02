@@ -1,11 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://clug72fd61e6v"]
+[gd_scene load_steps=7 format=3 uid="uid://clug72fd61e6v"]
 
 [ext_resource type="Script" path="res://ui/main.gd" id="1_ew7fs"]
+[ext_resource type="Shader" path="res://ui/main.gdshader" id="2_27b0s"]
 [ext_resource type="PackedScene" uid="uid://qlfymm5u3u08" path="res://world/parallax_bg.tscn" id="2_r1e3n"]
 [ext_resource type="PackedScene" uid="uid://i2sstbn0po53" path="res://ui/menu.tscn" id="3_kdfij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f00jb"]
 size = Vector2(384, 192)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45hnd"]
+shader = ExtResource("2_27b0s")
+shader_parameter/resolution = Vector2(384, 216)
+shader_parameter/scan_line_amount = 0.836
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.307
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -1.416
 
 [node name="Main" type="Control" groups=["main"]]
 layout_mode = 3
@@ -50,6 +68,16 @@ shape = SubResource("RectangleShape2D_f00jb")
 
 [node name="Menu" parent="." instance=ExtResource("3_kdfij")]
 layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_45hnd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="start_game" from="Menu" to="." method="_on_menu_start_game"]
 

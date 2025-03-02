@@ -86,10 +86,10 @@ func set_body_direction():
 	# run to destination
 	if position.x > (destination.x if target == null else target.position.x):
 		_sprite.set_flip_h(1)
-		$CollisionShape2D.position.x = 3
+		_sprite.offset.x = -3
 	else:
 		_sprite.set_flip_h(0)
-		$CollisionShape2D.position.x = -3
+		_sprite.offset.x = 3
 	
 	
 func _physics_process(delta):
